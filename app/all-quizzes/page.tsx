@@ -175,12 +175,12 @@ async function AllQuizzesPage() {
     <div className="space-y-8">
       <div className="text-center">
         <h1 className="text-5xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-4">
-          All Quizzes
+          All Tech Quizzes
         </h1>
         <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-          Explore all available quizzes across all subjects. Join live events with real prizes 
-          or practice with our extensive question banks covering Physics, Computer Science, 
-          Mathematics, Chemistry, Biology, and more!
+          Explore all available Web3 and tech quizzes. Join live events with real crypto prizes 
+          or practice with our comprehensive question banks covering Blockchain, DeFi, AR/VR, 
+          AI/ML, Software Development, and cutting-edge technology!
         </p>
       </div>
 
@@ -189,8 +189,8 @@ async function AllQuizzesPage() {
         <div>
           <div className="flex items-center justify-between mb-6">
             <div>
-              <h2 className="text-3xl font-bold text-purple-600 mb-2">🎯 Live Quiz Events</h2>
-              <p className="text-gray-600">Join exciting quiz competitions with real cash prizes!</p>
+              <h2 className="text-3xl font-bold text-purple-600 mb-2">🎯 Live Web3 Events</h2>
+              <p className="text-gray-600">Join exciting blockchain and tech quiz competitions with real crypto prizes!</p>
             </div>
             <div className="bg-purple-100 text-purple-800 px-4 py-2 rounded-full font-semibold">
               {eventQuizzes.length} Events
@@ -208,10 +208,10 @@ async function AllQuizzesPage() {
       {/* Practice Quizzes Section */}
       <div>
         <div className="flex items-center justify-between mb-6">
-          <div>
-            <h2 className="text-3xl font-bold text-blue-600 mb-2">📚 Practice Quizzes</h2>
-            <p className="text-gray-600">Test your knowledge with these practice quizzes across all subjects</p>
-          </div>
+            <div>
+              <h2 className="text-3xl font-bold text-blue-600 mb-2">💻 Tech Practice Quizzes</h2>
+              <p className="text-gray-600">Test your Web3 and technology knowledge with these practice quizzes</p>
+            </div>
           <div className="bg-blue-100 text-blue-800 px-4 py-2 rounded-full font-semibold">
             {mockQuizzes.length} Quizzes
           </div>

@@ -2,12 +2,12 @@ import { IQuiz } from "@/types/types";
 
 // Event quizzes organized by category
 export const eventQuizzes: IQuiz[] = [
-  {
-    id: "event-1",
-    title: "Mission Space: ISRO Special (मिशन स्पेस : इसरो स्पेशल)",
-    description: "India's sky is not the limit—it's the beginning. From Aryabhata to Chandrayaan, ISRO has taken India to the stars. 🚀🛰️🟦 The Mission Space Quiz celebrates India's space journey—rockets, missions, and the genius behind them. 🌍✨",
-    image: "/categories/image--science.svg",
-    categoryId: "1", // Physics category
+    {
+      id: "event-1",
+      title: "Blockchain Revolution: DeFi Mastery",
+      description: "Dive deep into the world of decentralized finance! From smart contracts to yield farming, test your knowledge of the technologies revolutionizing finance. 🚀⛓️💰 Explore DeFi protocols, liquidity pools, and the future of money! 🌐✨",
+      image: "/categories/image--technology.svg",
+      categoryId: "1", // Web3 category
     isEvent: true,
     prize: 2500,
     date: "Sep 24, 2025",
@@ -17,44 +17,44 @@ export const eventQuizzes: IQuiz[] = [
     totalSlots: 350,
     slotsLeft: 180,
     registrationFee: 10,
-    creator: "Krayonnz",
-    followers: "0.11M",
-    tags: ["Space", "ISRO", "Science", "India"],
-    questions: [
-      {
-        id: "q1",
-        text: "Which was India's first satellite?",
-        difficulty: "easy",
-        options: [
-          { id: "a1", text: "Aryabhata", isCorrect: true },
-          { id: "a2", text: "Bhaskara", isCorrect: false },
-          { id: "a3", text: "Rohini", isCorrect: false },
-          { id: "a4", text: "INSAT", isCorrect: false }
-        ]
-      },
-      {
-        id: "q2",
-        text: "In which year was ISRO established?",
-        difficulty: "medium",
-        options: [
-          { id: "b1", text: "1969", isCorrect: true },
-          { id: "b2", text: "1972", isCorrect: false },
-          { id: "b3", text: "1965", isCorrect: false },
-          { id: "b4", text: "1975", isCorrect: false }
-        ]
-      },
-      {
-        id: "q3",
-        text: "Which rocket is known as India's 'workhorse'?",
-        difficulty: "medium",
-        options: [
-          { id: "c1", text: "PSLV", isCorrect: true },
-          { id: "c2", text: "GSLV", isCorrect: false },
-          { id: "c3", text: "ASLV", isCorrect: false },
-          { id: "c4", text: "SSLV", isCorrect: false }
-        ]
-      }
-    ]
+      creator: "DeFi Academy",
+      followers: "0.15M",
+      tags: ["DeFi", "Blockchain", "Smart Contracts", "Web3"],
+      questions: [
+        {
+          id: "q1",
+          text: "What does DeFi stand for?",
+          difficulty: "easy",
+          options: [
+            { id: "a1", text: "Decentralized Finance", isCorrect: true },
+            { id: "a2", text: "Digital Finance", isCorrect: false },
+            { id: "a3", text: "Distributed Finance", isCorrect: false },
+            { id: "a4", text: "Decentralized Funding", isCorrect: false }
+          ]
+        },
+        {
+          id: "q2",
+          text: "Which consensus mechanism does Ethereum use?",
+          difficulty: "medium",
+          options: [
+            { id: "b1", text: "Proof of Stake", isCorrect: true },
+            { id: "b2", text: "Proof of Work", isCorrect: false },
+            { id: "b3", text: "Proof of Authority", isCorrect: false },
+            { id: "b4", text: "Proof of History", isCorrect: false }
+          ]
+        },
+        {
+          id: "q3",
+          text: "What is a smart contract?",
+          difficulty: "medium",
+          options: [
+            { id: "c1", text: "Self-executing contract with code", isCorrect: true },
+            { id: "c2", text: "AI-powered contract", isCorrect: false },
+            { id: "c3", text: "Digital signature", isCorrect: false },
+            { id: "c4", text: "Blockchain transaction", isCorrect: false }
+          ]
+        }
+      ]
   },
   {
     id: "event-2",
@@ -101,43 +101,43 @@ export const eventQuizzes: IQuiz[] = [
   },
   {
     id: "event-3",
-    title: "Climate Champions: Environmental Science Challenge",
-    description: "Join the fight against climate change! Test your knowledge of environmental science, sustainability, and green technologies. 🌱🌍💚 From renewable energy to conservation efforts, discover how science is helping us protect our planet. 🌊🌿",
-    image: "/categories/image--science.svg",
-    categoryId: "1", // Physics/Science category
+    title: "AR/VR Metaverse: Future of Interaction",
+    description: "Step into the metaverse! Test your knowledge of Augmented Reality, Virtual Reality, and immersive technologies. 🥽🌐💎 From VR headsets to AR applications, discover how these technologies are reshaping digital experiences. 🚀✨",
+    image: "/categories/image--technology.svg",
+    categoryId: "3", // AR/VR category
     isEvent: true,
     prize: 1800,
     date: "Sep 30, 2025",
     time: "6:00 PM",
     duration: "8m 45s",
-    difficulty: "Eco Warrior",
+    difficulty: "Metaverse Expert",
     totalSlots: 150,
     slotsLeft: 45,
     registrationFee: 8,
-    creator: "Green Minds",
-    followers: "0.08M",
-    tags: ["Environment", "Climate", "Sustainability", "Green Tech"],
+    creator: "VR Studios",
+    followers: "0.12M",
+    tags: ["AR", "VR", "Metaverse", "Immersive Tech"],
     questions: [
       {
         id: "q6",
-        text: "What is the main cause of global warming?",
+        text: "What does VR stand for?",
         difficulty: "easy",
         options: [
-          { id: "f1", text: "Greenhouse gas emissions", isCorrect: true },
-          { id: "f2", text: "Solar radiation", isCorrect: false },
-          { id: "f3", text: "Ocean currents", isCorrect: false },
-          { id: "f4", text: "Volcanic activity", isCorrect: false }
+          { id: "f1", text: "Virtual Reality", isCorrect: true },
+          { id: "f2", text: "Visual Reality", isCorrect: false },
+          { id: "f3", text: "Valuable Reality", isCorrect: false },
+          { id: "f4", text: "Vibrant Reality", isCorrect: false }
         ]
       },
       {
         id: "q7",
-        text: "Which renewable energy source has the highest efficiency?",
+        text: "What technology is used in AR to overlay digital content?",
         difficulty: "medium",
         options: [
-          { id: "g1", text: "Solar panels", isCorrect: false },
-          { id: "g2", text: "Wind turbines", isCorrect: false },
-          { id: "g3", text: "Hydroelectric", isCorrect: true },
-          { id: "g4", text: "Geothermal", isCorrect: false }
+          { id: "g1", text: "Computer Vision", isCorrect: true },
+          { id: "g2", text: "Blockchain", isCorrect: false },
+          { id: "g3", text: "Machine Learning", isCorrect: false },
+          { id: "g4", text: "Quantum Computing", isCorrect: false }
         ]
       }
     ]

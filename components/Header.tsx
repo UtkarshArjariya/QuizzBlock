@@ -63,7 +63,7 @@ function Header() {
             height={50}
             priority
           />
-          <h1 className="text-3xl font-bold text-blue-400">Kwizi</h1>
+          <h1 className="text-3xl font-bold text-blue-400">QuizBlock</h1>
         </Link>
 
         <ul className="flex items-center gap-8">

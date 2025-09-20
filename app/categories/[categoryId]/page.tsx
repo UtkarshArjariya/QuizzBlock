@@ -87,14 +87,14 @@ async function page({ params }: any) {
   // Helper function to get category name
   const getCategoryName = (id: string) => {
     const categoryNames: { [key: string]: string } = {
-      "1": "Physics & Science",
-      "2": "Computer Science & Technology",
-      "3": "Mathematics",
-      "4": "Chemistry",
-      "5": "Biology",
-      "6": "Programming"
+      "1": "Web3 & Blockchain",
+      "2": "AI & Machine Learning", 
+      "3": "AR/VR & Metaverse",
+      "4": "Software Development",
+      "5": "Cybersecurity",
+      "6": "Cloud Computing"
     };
-    return categoryNames[id] || "Category";
+    return categoryNames[id] || "Tech Category";
   };
 
   return (

@@ -71,19 +71,19 @@ export default function Home() {
       {/* Main Header */}
       <div className="text-center mb-8">
         <h1 className="text-5xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-4">
-          Welcome to Kwizi
+          Welcome to QuizBlock
         </h1>
         <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-          Test your knowledge across various subjects with our interactive quizzes. 
-          Join live events with real prizes or practice with our extensive question banks!
+          Master Web3, Blockchain, and cutting-edge technology with our interactive quizzes. 
+          Join live events with real prizes or practice with our comprehensive tech question banks!
         </p>
       </div>
 
       {/* Categories Section */}
       <div>
-        <h2 className="text-3xl font-bold mb-4 text-center">Choose Your Subject</h2>
+        <h2 className="text-3xl font-bold mb-4 text-center">Upcoming Quizzes</h2>
         <p className="text-gray-400 mb-8 text-center">
-          Explore quizzes by category - each category contains both practice quizzes and exciting live events!
+          Explore cutting-edge Web3 and tech quizzes - each category contains both practice quizzes and exciting live events with real prizes!
         </p>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -96,19 +96,19 @@ export default function Home() {
       {/* Features Section */}
       <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8">
         <div className="text-center p-6 bg-blue-50 rounded-lg">
-          <div className="text-4xl mb-4">🎯</div>
-          <h3 className="text-xl font-bold mb-2">Live Events</h3>
-          <p className="text-gray-600">Join exciting quiz competitions with real cash prizes!</p>
+          <div className="text-4xl mb-4">🚀</div>
+          <h3 className="text-xl font-bold mb-2">Web3 Events</h3>
+          <p className="text-gray-600">Join blockchain and DeFi quiz competitions with real crypto prizes!</p>
         </div>
         <div className="text-center p-6 bg-green-50 rounded-lg">
-          <div className="text-4xl mb-4">📚</div>
-          <h3 className="text-xl font-bold mb-2">Practice Quizzes</h3>
-          <p className="text-gray-600">Test your knowledge with our extensive question banks.</p>
+          <div className="text-4xl mb-4">💻</div>
+          <h3 className="text-xl font-bold mb-2">Tech Quizzes</h3>
+          <p className="text-gray-600">Master AR/VR, AI, and software development with our tech-focused questions.</p>
         </div>
         <div className="text-center p-6 bg-purple-50 rounded-lg">
           <div className="text-4xl mb-4">🏆</div>
           <h3 className="text-xl font-bold mb-2">Track Progress</h3>
-          <p className="text-gray-600">Monitor your performance and improve over time.</p>
+          <p className="text-gray-600">Monitor your Web3 and tech knowledge growth over time.</p>
         </div>
       </div>
     </div>
