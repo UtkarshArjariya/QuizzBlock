@@ -1,12 +1,24 @@
+/**
+ * Home Page Component
+ * 
+ * This is the main landing page of the Kwizi application. It provides:
+ * - Welcome message and app introduction
+ * - Category selection grid for users to choose subjects
+ * - Feature highlights (Live Events, Practice Quizzes, Progress Tracking)
+ * 
+ * The page handles Web3 wallet connection and displays different content
+ * based on connection status.
+ * 
+ * @returns JSX element for the home page
+ */
+
 "use client";
 
 import HomeCard from "@/components/quiz/HomeCard";
-import EventQuizCard from "@/components/quiz/EventQuizCard";
 import { useGlobalContext } from "@/context/globalContext";
 import { useWeb3 } from "@/context/Web3Context";
 import { ICategory } from "@/types/types";
 import { Button } from "@/components/ui/button";
-import { eventQuizzes } from "@/data/eventQuizzes";
 
 export default function Home() {
   const { categories } = useGlobalContext();
@@ -55,32 +67,48 @@ export default function Home() {
   }
 
   return (
-    <div className="space-y-12">
-      {/* Event Quizzes Section */}
+    <div>
+      {/* Main Header */}
+      <div className="text-center mb-8">
+        <h1 className="text-5xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-4">
+          Welcome to Kwizi
+        </h1>
+        <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+          Test your knowledge across various subjects with our interactive quizzes. 
+          Join live events with real prizes or practice with our extensive question banks!
+        </p>
+      </div>
+
+      {/* Categories Section */}
       <div>
-        <div className="flex items-center justify-between mb-6">
-          <div>
-            <h1 className="text-4xl font-bold">Live Quiz Events</h1>
-            <p className="text-gray-400 mt-2">Join exciting quiz competitions with real prizes!</p>
-          </div>
-        </div>
-        
-        <div className="grid grid-cols-[repeat(auto-fit,minmax(400px,1fr))] gap-8">
-          {eventQuizzes.map((quiz) => (
-            <EventQuizCard key={quiz.id} quiz={quiz} />
+        <h2 className="text-3xl font-bold mb-4 text-center">Choose Your Subject</h2>
+        <p className="text-gray-400 mb-8 text-center">
+          Explore quizzes by category - each category contains both practice quizzes and exciting live events!
+        </p>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {categories.map((category: ICategory) => (
+            <HomeCard key={category.id} category={category} />
           ))}
         </div>
       </div>
 
-      {/* Regular Categories Section */}
-      <div>
-        <h2 className="text-3xl font-bold mb-4">Quiz Categories</h2>
-        <p className="text-gray-400 mb-6">Choose a category to start your quiz journey</p>
-
-        <div className="grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-6">
-          {categories.map((category: ICategory) => (
-            <HomeCard key={category.id} category={category} />
-          ))}
+      {/* Features Section */}
+      <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="text-center p-6 bg-blue-50 rounded-lg">
+          <div className="text-4xl mb-4">🎯</div>
+          <h3 className="text-xl font-bold mb-2">Live Events</h3>
+          <p className="text-gray-600">Join exciting quiz competitions with real cash prizes!</p>
+        </div>
+        <div className="text-center p-6 bg-green-50 rounded-lg">
+          <div className="text-4xl mb-4">📚</div>
+          <h3 className="text-xl font-bold mb-2">Practice Quizzes</h3>
+          <p className="text-gray-600">Test your knowledge with our extensive question banks.</p>
+        </div>
+        <div className="text-center p-6 bg-purple-50 rounded-lg">
+          <div className="text-4xl mb-4">🏆</div>
+          <h3 className="text-xl font-bold mb-2">Track Progress</h3>
+          <p className="text-gray-600">Monitor your performance and improve over time.</p>
         </div>
       </div>
     </div>

@@ -1,6 +1,23 @@
+/**
+ * Category Page Component
+ * 
+ * This page displays all quizzes for a specific category, including:
+ * - Live Quiz Events (with prizes and registration)
+ * - Practice Quizzes (regular quiz content)
+ * 
+ * The page is organized into two main sections:
+ * 1. Event Quizzes - Special quizzes with prizes and registration fees
+ * 2. Practice Quizzes - Regular quizzes for learning and practice
+ * 
+ * @param params - Contains the categoryId from the URL
+ * @returns JSX element for the category page
+ */
+
 import React from "react";
 import { IQuiz } from "@/types/types";
 import QuizCard from "@/components/quiz/QuizCard";
+import EventQuizCard from "@/components/quiz/EventQuizCard";
+import { getEventQuizzesByCategory } from "@/data/eventQuizzes";
 
 async function page({ params }: any) {
   const { categoryId } = await params;
@@ -9,7 +26,10 @@ async function page({ params }: any) {
     return null;
   }
 
-  // Mock quiz data (database setup is optional)
+  // Get event quizzes for this category
+  const eventQuizzes = getEventQuizzesByCategory(categoryId);
+
+  // Mock regular quiz data (database setup is optional)
   const mockQuizzes: IQuiz[] = [
     {
       id: "1",
@@ -64,20 +84,62 @@ async function page({ params }: any) {
     }
   ];
 
-  return (
-    <div>
-      <h1 className="mb-6 text-4xl font-bold">All Quizzes</h1>
+  // Helper function to get category name
+  const getCategoryName = (id: string) => {
+    const categoryNames: { [key: string]: string } = {
+      "1": "Physics & Science",
+      "2": "Computer Science & Technology",
+      "3": "Mathematics",
+      "4": "Chemistry",
+      "5": "Biology",
+      "6": "Programming"
+    };
+    return categoryNames[id] || "Category";
+  };
 
-      {mockQuizzes.length > 0 ? (
-        <div className="mb-8 grid grid-cols-[repeat(auto-fit,minmax(400px,1fr))] gap-6">
-          {mockQuizzes.map((quiz) => (
-            <QuizCard key={quiz.id} quiz={quiz} />
-          ))}
+  return (
+    <div className="space-y-8">
+      <h1 className="text-4xl font-bold">{getCategoryName(categoryId)} Quizzes</h1>
+
+      {/* Event Quizzes Section */}
+      {eventQuizzes.length > 0 && (
+        <div>
+          <h2 className="text-2xl font-bold mb-4 text-purple-600">🎯 Live Quiz Events</h2>
+          <p className="text-gray-600 mb-6">Join exciting quiz competitions with real prizes!</p>
+          
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+            {eventQuizzes.map((quiz) => (
+              <EventQuizCard key={quiz.id} quiz={quiz} />
+            ))}
+          </div>
         </div>
-      ) : (
-        <h1 className="text-2xl text-center mt-4">
-          No quizzes found for this Category
-        </h1>
+      )}
+
+      {/* Regular Quizzes Section */}
+      <div>
+        <h2 className="text-2xl font-bold mb-4 text-blue-600">📚 Practice Quizzes</h2>
+        <p className="text-gray-600 mb-6">Test your knowledge with these practice quizzes</p>
+        
+        {mockQuizzes.length > 0 ? (
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            {mockQuizzes.map((quiz) => (
+              <QuizCard key={quiz.id} quiz={quiz} />
+            ))}
+          </div>
+        ) : (
+          <div className="text-center py-12">
+            <h3 className="text-xl text-gray-500">No practice quizzes available yet</h3>
+            <p className="text-gray-400 mt-2">Check back later for new content!</p>
+          </div>
+        )}
+      </div>
+
+      {/* No quizzes message */}
+      {eventQuizzes.length === 0 && mockQuizzes.length === 0 && (
+        <div className="text-center py-12">
+          <h2 className="text-2xl text-gray-500">No quizzes found for this category</h2>
+          <p className="text-gray-400 mt-2">Try exploring other categories!</p>
+        </div>
       )}
     </div>
   );

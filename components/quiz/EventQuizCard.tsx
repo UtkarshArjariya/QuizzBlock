@@ -1,7 +1,6 @@
 "use client";
 
 import React from "react";
-import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useGlobalContext } from "@/context/globalContext";
 import { IQuiz } from "@/types/types";
@@ -21,7 +20,6 @@ function EventQuizCard({ quiz }: Props) {
 
   const handleRegister = (e: React.MouseEvent) => {
     e.stopPropagation();
-    // Handle registration logic here
     console.log("Registering for quiz:", quiz.id);
   };
 
@@ -31,7 +29,6 @@ function EventQuizCard({ quiz }: Props) {
 
   return (
     <div className="bg-white border border-gray-200 rounded-lg shadow-lg max-w-md mx-auto overflow-hidden">
-      {/* Header Section */}
       <div className="flex items-center justify-between p-4 pb-2">
         <div className="flex items-center gap-3">
           <div className="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center">
@@ -53,10 +50,8 @@ function EventQuizCard({ quiz }: Props) {
         </button>
       </div>
 
-      {/* Quiz Banner */}
       <div className="relative">
         <div className="h-48 bg-gradient-to-br from-blue-900 via-purple-900 to-indigo-900 relative overflow-hidden">
-          {/* Stars background */}
           <div className="absolute inset-0 opacity-50">
             <div className="absolute top-4 left-4 w-1 h-1 bg-white rounded-full"></div>
             <div className="absolute top-8 right-8 w-1 h-1 bg-white rounded-full"></div>
@@ -65,7 +60,6 @@ function EventQuizCard({ quiz }: Props) {
             <div className="absolute bottom-12 right-12 w-1 h-1 bg-white rounded-full"></div>
           </div>
           
-          {/* Content */}
           <div className="relative z-10 p-6 h-full flex flex-col justify-between">
             <div className="flex justify-between items-start">
               <div className="text-white">
@@ -94,7 +88,6 @@ function EventQuizCard({ quiz }: Props) {
         </div>
       </div>
 
-      {/* Quiz Details */}
       <div className="p-4 space-y-3">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
@@ -121,13 +114,11 @@ function EventQuizCard({ quiz }: Props) {
           </span>
         </div>
 
-        {/* Description */}
         <div className="text-sm text-gray-700 leading-relaxed">
           <p className="mb-2">{quiz.description}</p>
           <span className="text-blue-500 text-sm cursor-pointer">Read More</span>
         </div>
 
-        {/* Registration Section */}
         <div className="space-y-3">
           <div className="flex justify-between items-center text-sm">
             <span className="text-gray-600">{quiz.slotsLeft || 180} Slots Left</span>
@@ -149,7 +140,6 @@ function EventQuizCard({ quiz }: Props) {
           </button>
         </div>
 
-        {/* Engagement Section */}
         <div className="flex items-center justify-between pt-3 border-t border-gray-100">
           <div className="flex items-center gap-6">
             <button className="flex items-center gap-2 text-gray-600 hover:text-blue-600">

@@ -1,12 +1,13 @@
 import { IQuiz } from "@/types/types";
 
+// Event quizzes organized by category
 export const eventQuizzes: IQuiz[] = [
   {
     id: "event-1",
     title: "Mission Space: ISRO Special (मिशन स्पेस : इसरो स्पेशल)",
     description: "India's sky is not the limit—it's the beginning. From Aryabhata to Chandrayaan, ISRO has taken India to the stars. 🚀🛰️🟦 The Mission Space Quiz celebrates India's space journey—rockets, missions, and the genius behind them. 🌍✨",
     image: "/categories/image--science.svg",
-    categoryId: "science",
+    categoryId: "1", // Physics category
     isEvent: true,
     prize: 2500,
     date: "Sep 24, 2025",
@@ -60,7 +61,7 @@ export const eventQuizzes: IQuiz[] = [
     title: "AI Revolution: Machine Learning Mastery",
     description: "Dive deep into the world of artificial intelligence and machine learning. From neural networks to deep learning algorithms, test your knowledge of the technologies shaping our future. 🤖🧠⚡ Explore the fascinating realm where data meets intelligence! 📊💡",
     image: "/categories/image--computer-science.svg",
-    categoryId: "technology",
+    categoryId: "2", // Computer Science category
     isEvent: true,
     prize: 3500,
     date: "Oct 2, 2025",
@@ -103,7 +104,7 @@ export const eventQuizzes: IQuiz[] = [
     title: "Climate Champions: Environmental Science Challenge",
     description: "Join the fight against climate change! Test your knowledge of environmental science, sustainability, and green technologies. 🌱🌍💚 From renewable energy to conservation efforts, discover how science is helping us protect our planet. 🌊🌿",
     image: "/categories/image--science.svg",
-    categoryId: "environment",
+    categoryId: "1", // Physics/Science category
     isEvent: true,
     prize: 1800,
     date: "Sep 30, 2025",
@@ -146,7 +147,7 @@ export const eventQuizzes: IQuiz[] = [
     title: "Crypto & Blockchain: Web3 Mastery",
     description: "Navigate the decentralized world of cryptocurrency and blockchain technology! 🪙⛓️💎 From Bitcoin to DeFi, NFTs to smart contracts, test your understanding of the technologies revolutionizing finance and beyond. 🚀💰",
     image: "/categories/image--technology.svg",
-    categoryId: "crypto",
+    categoryId: "2", // Computer Science/Technology category
     isEvent: true,
     prize: 4200,
     date: "Oct 8, 2025",
@@ -196,3 +197,20 @@ export const eventQuizzes: IQuiz[] = [
     ]
   }
 ];
+
+/**
+ * Helper function to get event quizzes by category ID
+ * @param categoryId - The category ID to filter event quizzes
+ * @returns Array of event quizzes for the specified category
+ */
+export const getEventQuizzesByCategory = (categoryId: string): IQuiz[] => {
+  return eventQuizzes.filter(quiz => quiz.categoryId === categoryId);
+};
+
+/**
+ * Get all event quizzes (for admin or overview purposes)
+ * @returns Array of all event quizzes
+ */
+export const getAllEventQuizzes = (): IQuiz[] => {
+  return eventQuizzes;
+};
