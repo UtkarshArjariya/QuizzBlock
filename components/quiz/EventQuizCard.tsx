@@ -25,9 +25,10 @@ function EventQuizCard({ quiz }: Props) {
     console.log("Registering for quiz:", quiz.id);
   };
 
-  const slotsPercentage = quiz.totalSlots && quiz.slotsLeft 
-    ? ((quiz.totalSlots - quiz.slotsLeft) / quiz.totalSlots) * 100 
-    : 0;
+  const slotsPercentage =
+    quiz.totalSlots && quiz.slotsLeft
+      ? ((quiz.totalSlots - quiz.slotsLeft) / quiz.totalSlots) * 100
+      : 0;
 
   return (
     <div className="bg-white border border-gray-200 rounded-lg shadow-lg max-w-md mx-auto overflow-hidden">
@@ -64,7 +65,7 @@ function EventQuizCard({ quiz }: Props) {
             <div className="absolute bottom-8 left-8 w-1 h-1 bg-white rounded-full"></div>
             <div className="absolute bottom-12 right-12 w-1 h-1 bg-white rounded-full"></div>
           </div>
-          
+
           {/* Content */}
           <div className="relative z-10 p-6 h-full flex flex-col justify-between">
             <div className="flex justify-between items-start">
@@ -75,7 +76,7 @@ function EventQuizCard({ quiz }: Props) {
                 <span className="text-white font-bold">Q</span>
               </div>
             </div>
-            
+
             <div className="text-center">
               <h1 className="text-2xl font-bold text-white mb-1">
                 {quiz.title.split(":")[0] || quiz.title}
@@ -88,7 +89,9 @@ function EventQuizCard({ quiz }: Props) {
             </div>
 
             <div className="bg-yellow-400 text-black px-3 py-1 rounded-md text-center">
-              <span className="font-bold">MAX PRIZE POOL ₹{quiz.prize || 2500}</span>
+              <span className="font-bold">
+                MAX PRIZE POOL ₹{quiz.prize || 2500}
+              </span>
             </div>
           </div>
         </div>
@@ -100,18 +103,24 @@ function EventQuizCard({ quiz }: Props) {
           <div className="flex items-center gap-2">
             <span className="text-yellow-500">🏆</span>
             <span className="font-semibold">₹{quiz.prize || 2500}</span>
-            <span className="text-blue-500 text-sm cursor-pointer">Details</span>
+            <span className="text-blue-500 text-sm cursor-pointer">
+              Details
+            </span>
           </div>
         </div>
 
         <div className="flex items-center gap-2 text-sm text-gray-600">
           <span className="text-gray-400">📅</span>
-          <span>{quiz.date}, {quiz.time}</span>
+          <span>
+            {quiz.date}, {quiz.time}
+          </span>
         </div>
 
         <div className="flex items-center gap-2 text-sm text-gray-600">
           <span className="text-gray-400">⏰</span>
-          <span>{quiz.duration} | {quiz.questions?.length || 10} questions</span>
+          <span>
+            {quiz.duration} | {quiz.questions?.length || 10} questions
+          </span>
         </div>
 
         <div className="flex items-center gap-2">
@@ -124,18 +133,24 @@ function EventQuizCard({ quiz }: Props) {
         {/* Description */}
         <div className="text-sm text-gray-700 leading-relaxed">
           <p className="mb-2">{quiz.description}</p>
-          <span className="text-blue-500 text-sm cursor-pointer">Read More</span>
+          <span className="text-blue-500 text-sm cursor-pointer">
+            Read More
+          </span>
         </div>
 
         {/* Registration Section */}
         <div className="space-y-3">
           <div className="flex justify-between items-center text-sm">
-            <span className="text-gray-600">{quiz.slotsLeft || 180} Slots Left</span>
-            <span className="text-gray-600">{quiz.totalSlots || 350} Slots</span>
+            <span className="text-gray-600">
+              {quiz.slotsLeft || 180} Slots Left
+            </span>
+            <span className="text-gray-600">
+              {quiz.totalSlots || 350} Slots
+            </span>
           </div>
-          
+
           <div className="w-full bg-gray-200 rounded-full h-2">
-            <div 
+            <div
               className="bg-blue-500 h-2 rounded-full transition-all duration-300"
               style={{ width: `${100 - slotsPercentage}%` }}
             ></div>
@@ -143,9 +158,19 @@ function EventQuizCard({ quiz }: Props) {
 
           <button
             onClick={handleRegister}
-            className="w-full bg-purple-600 hover:bg-purple-700 text-white font-semibold py-3 px-4 rounded-lg transition-colors duration-200"
+            className="w-full bg-purple-600 hover:bg-purple-700 text-white font-semibold py-3 px-4 rounded-lg transition-colors duration-200 mb-2"
           >
             Register for ₹{quiz.registrationFee || 10}
+          </button>
+
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              router.push("/live-quiz");
+            }}
+            className="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-200"
+          >
+            Host Live Quiz
           </button>
         </div>
 
@@ -163,7 +188,7 @@ function EventQuizCard({ quiz }: Props) {
               <span className="text-lg">↗️</span>
             </button>
           </div>
-          
+
           <div className="flex items-center gap-3">
             <button className="text-gray-600 hover:text-blue-600">
               <span className="text-lg">🎁</span>

@@ -9,16 +9,16 @@ import { Button } from "./ui/button";
 
 function Header() {
   const pathname = usePathname();
-  const { 
-    account, 
-    isConnected, 
-    isConnecting, 
-    isCorrectNetwork, 
+  const {
+    account,
+    isConnected,
+    isConnecting,
+    isCorrectNetwork,
     isInitialized,
-    connectWallet, 
-    disconnectWallet, 
+    connectWallet,
+    disconnectWallet,
     switchToAvalanche,
-    isMetaMaskInstalled 
+    isMetaMaskInstalled,
   } = useWeb3();
 
   const menu = [
@@ -26,6 +26,11 @@ function Header() {
       name: "Home",
       icon: home,
       link: "/",
+    },
+    {
+      name: "Live Quiz",
+      icon: "🎮",
+      link: "/live-quiz",
     },
     {
       name: "My Stats",
@@ -43,10 +48,10 @@ function Header() {
     <header className="min-h-[8vh] px-[10rem] xl:px-[15rem] border-b-2 flex items-center">
       <nav className="flex-1 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-2">
-          <Image 
-            src="/icon--logo-lg.png" 
-            alt="logo" 
-            width={50} 
+          <Image
+            src="/icon--logo-lg.png"
+            alt="logo"
+            width={50}
             height={50}
             priority
           />

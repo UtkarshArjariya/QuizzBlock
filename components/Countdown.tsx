@@ -26,7 +26,9 @@ function Countdown({ intitialTimeLeft }: Props) {
   return (
     <p>
       Please try again in{" "}
-      <span className="text-2xl text-blue-400 font-bold">{timeLeft}</span>{" "}
+      <span className="text-2xl text-blue-400 font-bold">
+        {isNaN(timeLeft) ? 0 : timeLeft}
+      </span>{" "}
       seconds. This page will automatically refresh.
     </p>
   );

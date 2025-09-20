@@ -1,0 +1,60 @@
+{
+  "2QY0P3": {
+    "id": "session-1758403218041-cflgnqmar7m",
+    "code": "2QY0P3",
+    "quiz": {
+      "id": "custom-1758403214663",
+      "title": "sex",
+      "description": "bahut saara sex",
+      "categoryId": "custom",
+      "questions": [
+        {
+          "id": "custom-q1",
+          "text": "sex",
+          "difficulty": "medium",
+          "options": [
+            {
+              "id": "custom-q1-opt1",
+              "text": "sex",
+              "isCorrect": false
+            },
+            {
+              "id": "custom-q1-opt2",
+              "text": "sex",
+              "isCorrect": true
+            },
+            {
+              "id": "custom-q1-opt3",
+              "text": "sex",
+              "isCorrect": false
+            },
+            {
+              "id": "custom-q1-opt4",
+              "text": "sex",
+              "isCorrect": false
+            }
+          ]
+        }
+      ],
+      "isEvent": false,
+      "difficulty": "Mixed"
+    },
+    "hostWallet": "0xd7851cd05bf163212bd831fc29f84a20978b5946",
+    "prizeAmount": 1,
+    "status": "waiting",
+    "currentQuestionIndex": -1,
+    "participants": [
+      {
+        "id": "participant-1758403243068-k3n9d26y2cn",
+        "walletAddress": "0xe1f6cc5d25e9f4be64b08fedf2e68625a80fd8be",
+        "username": "Player 1",
+        "score": 0,
+        "answers": [],
+        "joinedAt": "2025-09-20T21:20:43.068Z",
+        "isConnected": true
+      }
+    ],
+    "createdAt": "2025-09-20T21:20:18.041Z",
+    "questionTimeLimit": 30
+  }
+}
