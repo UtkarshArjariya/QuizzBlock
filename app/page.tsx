@@ -37,9 +37,9 @@ export default function Home() {
     return (
       <div className="flex flex-col items-center justify-center min-h-[60vh] text-center">
         <div className="bg-gray-800 p-8 rounded-lg border border-gray-700 max-w-md">
-          <h1 className="text-3xl font-bold text-blue-400 mb-4">Welcome to Kwizi</h1>
+          <h1 className="text-3xl font-bold text-blue-400 mb-4">Welcome to QuizBlock</h1>
           <p className="text-gray-300 mb-6">
-            Connect your MetaMask wallet to start taking quizzes on the Avalanche network.
+            Connect your MetaMask wallet to start taking Web3 and tech quizzes on the Avalanche network.
           </p>
           {isMetaMaskInstalled() ? (
             <Button

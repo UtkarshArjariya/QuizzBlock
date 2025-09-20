@@ -1,4 +1,4 @@
-# Kwizi Web3 Setup Guide
+# QuizBlock Web3 Setup Guide
 
 This application has been converted from a traditional Web2 authentication system to a Web3 application using MetaMask and Avalanche blockchain.
 

@@ -6,39 +6,39 @@ export async function GET(req: NextRequest) {
     const mockCategories = [
       {
         id: "1",
-        name: "Computer Science",
-        description: "Programming and computer science fundamentals",
+        name: "Web3 & Blockchain",
+        description: "DeFi, smart contracts, and blockchain technology",
         image: "/categories/image--computer-science.svg"
       },
       {
         id: "2", 
-        name: "Physics",
-        description: "Physics concepts and principles",
-        image: "/categories/image--physics.svg"
+        name: "AI & Machine Learning",
+        description: "Artificial intelligence and machine learning algorithms",
+        image: "/categories/image--technology.svg"
       },
       {
         id: "3",
-        name: "Chemistry", 
-        description: "Chemical reactions and properties",
-        image: "/categories/image--chemistry.svg"
+        name: "AR/VR & Metaverse", 
+        description: "Augmented reality, virtual reality, and immersive tech",
+        image: "/categories/image--technology.svg"
       },
       {
         id: "4",
-        name: "Biology",
-        description: "Life sciences and biological processes", 
-        image: "/categories/image--biology.svg"
+        name: "Software Development",
+        description: "Modern programming and development frameworks", 
+        image: "/categories/image--programming.svg"
       },
       {
         id: "5",
-        name: "Data Structures",
-        description: "Algorithms and data structure concepts",
+        name: "Cybersecurity",
+        description: "Security protocols and ethical hacking",
         image: "/categories/image--data-structures.svg"
       },
       {
         id: "6",
-        name: "Programming",
-        description: "Programming languages and concepts",
-        image: "/categories/image--programming.svg"
+        name: "Cloud Computing",
+        description: "AWS, Azure, and distributed systems",
+        image: "/categories/image--computer-science.svg"
       }
     ];
 

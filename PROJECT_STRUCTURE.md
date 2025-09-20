@@ -1,7 +1,7 @@
-# Kwizi Quiz Application - Project Structure
+# QuizBlock - Web3 & Tech Quiz Application - Project Structure
 
 ## 📁 Project Overview
-This is a Next.js-based quiz application with Web3 integration, featuring both regular practice quizzes and live event quizzes with prizes.
+This is a Next.js-based Web3 and tech quiz application with blockchain integration, featuring both regular practice quizzes and live event quizzes with crypto prizes.
 
 ## 🗂️ File Structure & Organization
 

@@ -6,8 +6,8 @@ import ContextProvider from "@/providers/ContextProvider";
 import { Toaster } from "react-hot-toast";
 
 export const metadata: Metadata = {
-  title: "Kwizi - Web3 Quiz Platform",
-  description: "A decentralized quiz platform powered by Avalanche blockchain",
+  title: "QuizBlock - Web3 & Tech Quiz Platform",
+  description: "A decentralized Web3 and tech quiz platform powered by Avalanche blockchain",
 };
 
 const nunito = Nunito({
