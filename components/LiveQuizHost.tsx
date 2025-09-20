@@ -307,134 +307,137 @@ export default function LiveQuizHost({
           )}
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          {/* Quiz Control Panel */}
-          <Card>
-            <CardHeader>
-              <CardTitle>Quiz Control</CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              <div>
-                <p>
-                  <strong>Quiz Code:</strong> {session.code}
-                </p>
-                <p>
-                  <strong>Status:</strong> {session.status}
-                </p>
-                <p>
-                  <strong>Prize:</strong> {session.prizeAmount} AVAX
-                </p>
-                <p>
-                  <strong>Participants:</strong>{" "}
-                  <span
-                    className={`font-bold ${
-                      participants.length > 0
-                        ? "text-green-600"
-                        : "text-gray-500"
-                    }`}
-                  >
-                    {participants.length}
-                  </span>
-                  {participants.length === 0 && (
-                    <span className="text-sm text-gray-500 ml-2">
-                      (Waiting for participants...)
-                    </span>
-                  )}
-                </p>
-                {session.status === "active" && (
+            {/* Quiz Control Panel */}
+            <Card>
+              <CardHeader>
+                <CardTitle>Quiz Control</CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div>
                   <p>
-                    <strong>Progress:</strong> Question{" "}
-                    {(session.currentQuestionIndex || 0) + 1} of{" "}
-                    {session.quiz.questions.length}
+                    <strong>Quiz Code:</strong> {session.code}
                   </p>
-                )}
-              </div>
-
-              {session.status === "waiting" && (
-                <Button
-                  onClick={handleStartQuiz}
-                  disabled={participants.length === 0}
-                  className={
-                    participants.length > 0
-                      ? "bg-green-600 hover:bg-green-700"
-                      : ""
-                  }
-                >
-                  {participants.length === 0
-                    ? "Waiting for Participants..."
-                    : `Start Quiz (${participants.length} participant${
-                        participants.length > 1 ? "s" : ""
-                      })`}
-                </Button>
-              )}
-
-              {session.status === "active" && (
-                <div className="space-y-2">
-                  <Button 
-                    onClick={handleNextQuestion}
-                    className="w-full"
-                    disabled={!currentQuestion}
-                  >
-                    {(session.currentQuestionIndex || 0) + 1 >= session.quiz.questions.length
-                      ? "Finish Quiz"
-                      : "Next Question"}
-                  </Button>
-                  <Button 
-                    onClick={handleEndQuiz} 
-                    variant="destructive"
-                    className="w-full"
-                  >
-                    End Quiz Early
-                  </Button>
+                  <p>
+                    <strong>Status:</strong> {session.status}
+                  </p>
+                  <p>
+                    <strong>Prize:</strong> {session.prizeAmount} AVAX
+                  </p>
+                  <p>
+                    <strong>Participants:</strong>{" "}
+                    <span
+                      className={`font-bold ${
+                        participants.length > 0
+                          ? "text-green-600"
+                          : "text-gray-500"
+                      }`}
+                    >
+                      {participants.length}
+                    </span>
+                    {participants.length === 0 && (
+                      <span className="text-sm text-gray-500 ml-2">
+                        (Waiting for participants...)
+                      </span>
+                    )}
+                  </p>
+                  {session.status === "active" && (
+                    <p>
+                      <strong>Progress:</strong> Question{" "}
+                      {(session.currentQuestionIndex || 0) + 1} of{" "}
+                      {session.quiz.questions.length}
+                    </p>
+                  )}
                 </div>
-              )}
-            </CardContent>
-          </Card>
 
-          {/* Participants List */}
-          <Card>
-            <CardHeader>
-              <CardTitle>Participants ({participants.length})</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="space-y-2 max-h-96 overflow-y-auto">
-                {participants.map((participant) => (
-                  <div
-                    key={participant.id}
-                    className="flex justify-between items-center p-2 bg-gray-50 rounded"
+                {session.status === "waiting" && (
+                  <Button
+                    onClick={handleStartQuiz}
+                    disabled={participants.length === 0}
+                    className={
+                      participants.length > 0
+                        ? "bg-green-600 hover:bg-green-700"
+                        : ""
+                    }
                   >
-                    <div>
-                      <p className="font-medium">
-                        {participant.username ||
-                          `${participant.walletAddress.slice(
-                            0,
-                            6
-                          )}...${participant.walletAddress.slice(-4)}`}
-                      </p>
-                      <p className="text-sm text-gray-500">
-                        Score: {participant.score}
-                      </p>
-                    </div>
-                    <div className="text-right">
-                      <p className="text-sm">Rank: {participant.rank || "-"}</p>
-                      <div
-                        className={`w-3 h-3 rounded-full ${
-                          participant.isConnected
-                            ? "bg-green-500"
-                            : "bg-red-500"
-                        }`}
-                      />
-                    </div>
-                  </div>
-                ))}
-                {participants.length === 0 && (
-                  <p className="text-gray-500 text-center py-4">
-                    No participants yet. Share the quiz code:{" "}
-                    <strong>{session.code}</strong>
-                  </p>
+                    {participants.length === 0
+                      ? "Waiting for Participants..."
+                      : `Start Quiz (${participants.length} participant${
+                          participants.length > 1 ? "s" : ""
+                        })`}
+                  </Button>
                 )}
-              </div>
-            </CardContent>
-          </Card>
+
+                {session.status === "active" && (
+                  <div className="space-y-2">
+                    <Button
+                      onClick={handleNextQuestion}
+                      className="w-full"
+                      disabled={!currentQuestion}
+                    >
+                      {(session.currentQuestionIndex || 0) + 1 >=
+                      session.quiz.questions.length
+                        ? "Finish Quiz"
+                        : "Next Question"}
+                    </Button>
+                    <Button
+                      onClick={handleEndQuiz}
+                      variant="destructive"
+                      className="w-full"
+                    >
+                      End Quiz Early
+                    </Button>
+                  </div>
+                )}
+              </CardContent>
+            </Card>
+
+            {/* Participants List */}
+            <Card>
+              <CardHeader>
+                <CardTitle>Participants ({participants.length})</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-2 max-h-96 overflow-y-auto">
+                  {participants.map((participant) => (
+                    <div
+                      key={participant.id}
+                      className="flex justify-between items-center p-2 bg-gray-50 rounded"
+                    >
+                      <div>
+                        <p className="font-medium">
+                          {participant.username ||
+                            `${participant.walletAddress.slice(
+                              0,
+                              6
+                            )}...${participant.walletAddress.slice(-4)}`}
+                        </p>
+                        <p className="text-sm text-gray-500">
+                          Score: {participant.score}
+                        </p>
+                      </div>
+                      <div className="text-right">
+                        <p className="text-sm">
+                          Rank: {participant.rank || "-"}
+                        </p>
+                        <div
+                          className={`w-3 h-3 rounded-full ${
+                            participant.isConnected
+                              ? "bg-green-500"
+                              : "bg-red-500"
+                          }`}
+                        />
+                      </div>
+                    </div>
+                  ))}
+                  {participants.length === 0 && (
+                    <p className="text-gray-500 text-center py-4">
+                      No participants yet. Share the quiz code:{" "}
+                      <strong>{session.code}</strong>
+                    </p>
+                  )}
+                </div>
+              </CardContent>
+            </Card>
           </div>
         </div>
       )}

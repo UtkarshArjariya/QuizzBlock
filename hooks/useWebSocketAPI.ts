@@ -172,24 +172,43 @@ export function useWebSocket(): IWebSocketAPI {
             return;
         }
 
-        // Update session status via API
         try {
-            // For mock implementation, we'll simulate the start
+            // Update session status
             currentSession.status = 'active';
             currentSession.currentQuestionIndex = 0;
             currentSession.startedAt = new Date().toISOString();
 
-            const firstQuestion = currentSession.quiz.questions[0];
+            // Save updated session to file storage
+            const response = await fetch('/api/quiz-sessions/update', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    code: currentSession.code,
+                    updates: {
+                        status: 'active',
+                        currentQuestionIndex: 0,
+                        startedAt: new Date().toISOString()
+                    }
+                })
+            });
 
-            // Trigger quiz started callback
-            setTimeout(() => {
-                eventCallbacks.onQuizStarted?.({
-                    sessionId: currentSession!.id,
-                    currentQuestion: firstQuestion,
-                    timeLimit: 30
-                });
-                console.log('Quiz started! First question is now active.');
-            }, 500);
+            if (response.ok) {
+                const firstQuestion = currentSession.quiz.questions[0];
+
+                // Trigger quiz started callback
+                setTimeout(() => {
+                    eventCallbacks.onQuizStarted?.({
+                        sessionId: currentSession!.id,
+                        currentQuestion: firstQuestion,
+                        timeLimit: 30
+                    });
+                    console.log('Quiz started! First question is now active.');
+                }, 500);
+            } else {
+                throw new Error('Failed to update session');
+            }
 
         } catch (error) {
             console.error('Error starting quiz:', error);
@@ -205,25 +224,52 @@ export function useWebSocket(): IWebSocketAPI {
             return;
         }
 
-        currentSession.currentQuestionIndex++;
+        const newQuestionIndex = currentSession.currentQuestionIndex + 1;
 
-        if (currentSession.currentQuestionIndex >= currentSession.quiz.questions.length) {
+        if (newQuestionIndex >= currentSession.quiz.questions.length) {
             // End quiz if no more questions
             endQuiz(sessionId, hostWallet);
             return;
         }
 
-        const nextQ = currentSession.quiz.questions[currentSession.currentQuestionIndex];
+        try {
+            // Update session with new question index
+            currentSession.currentQuestionIndex = newQuestionIndex;
 
-        setTimeout(() => {
-            eventCallbacks.onQuestionChanged?.({
-                questionIndex: currentSession!.currentQuestionIndex,
-                question: nextQ,
-                timeLimit: 30,
-                timeLeft: 30
+            // Save updated session to file storage
+            const response = await fetch('/api/quiz-sessions/update', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    code: currentSession.code,
+                    updates: {
+                        currentQuestionIndex: newQuestionIndex
+                    }
+                })
             });
-            console.log('Next question loaded!');
-        }, 500);
+
+            if (response.ok) {
+                const nextQ = currentSession.quiz.questions[newQuestionIndex];
+
+                setTimeout(() => {
+                    eventCallbacks.onQuestionChanged?.({
+                        questionIndex: newQuestionIndex,
+                        question: nextQ,
+                        timeLimit: 30,
+                        timeLeft: 30
+                    });
+                    console.log('Next question loaded!');
+                }, 500);
+            } else {
+                throw new Error('Failed to update session');
+            }
+
+        } catch (error) {
+            console.error('Error updating question index:', error);
+            eventCallbacks.onError?.({ message: 'Failed to move to next question' });
+        }
     };
 
     const endQuiz = async (sessionId: string, hostWallet: string) => {
@@ -234,36 +280,62 @@ export function useWebSocket(): IWebSocketAPI {
             return;
         }
 
-        currentSession.status = 'ended';
-        currentSession.endedAt = new Date().toISOString();
+        try {
+            // Update session status to ended
+            currentSession.status = 'ended';
+            currentSession.endedAt = new Date().toISOString();
 
-        // Generate mock results
-        const mockResults: IQuizResults = {
-            sessionId,
-            quiz: currentSession.quiz,
-            hostWallet,
-            prizeAmount: currentSession.prizeAmount,
-            totalParticipants: currentSession.participants.length,
-            completedAt: new Date().toISOString(),
-            duration: 300000, // 5 minutes
-            participants: currentSession.participants.map((p, index) => ({
-                walletAddress: p.walletAddress,
-                username: p.username,
-                score: Math.floor(Math.random() * 1000),
-                rank: index + 1,
-                totalAnswers: currentSession!.quiz.questions.length,
-                correctAnswers: Math.floor(Math.random() * currentSession!.quiz.questions.length),
-                averageResponseTime: Math.floor(Math.random() * 5000) + 1000,
-                answers: [],
-                prize: index === 0 ? currentSession!.prizeAmount : 0
-            })),
-            questionStats: []
-        };
+            // Save updated session to file storage
+            const response = await fetch('/api/quiz-sessions/update', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    code: currentSession.code,
+                    updates: {
+                        status: 'ended',
+                        endedAt: new Date().toISOString()
+                    }
+                })
+            });
 
-        setTimeout(() => {
-            eventCallbacks.onQuizEnded?.({ results: mockResults });
-            console.log('Quiz ended! Results generated.');
-        }, 500);
+            if (response.ok) {
+                // Generate mock results
+                const mockResults: IQuizResults = {
+                    sessionId,
+                    quiz: currentSession.quiz,
+                    hostWallet,
+                    prizeAmount: currentSession.prizeAmount,
+                    totalParticipants: currentSession.participants.length,
+                    completedAt: new Date().toISOString(),
+                    duration: 300000, // 5 minutes
+                    participants: currentSession.participants.map((p, index) => ({
+                        walletAddress: p.walletAddress,
+                        username: p.username,
+                        score: Math.floor(Math.random() * 1000),
+                        rank: index + 1,
+                        totalAnswers: currentSession!.quiz.questions.length,
+                        correctAnswers: Math.floor(Math.random() * currentSession!.quiz.questions.length),
+                        averageResponseTime: Math.floor(Math.random() * 5000) + 1000,
+                        answers: [],
+                        prize: index === 0 ? currentSession!.prizeAmount : 0
+                    })),
+                    questionStats: []
+                };
+
+                setTimeout(() => {
+                    eventCallbacks.onQuizEnded?.({ results: mockResults });
+                    console.log('Quiz ended! Results generated.');
+                }, 500);
+            } else {
+                throw new Error('Failed to update session');
+            }
+
+        } catch (error) {
+            console.error('Error ending quiz:', error);
+            eventCallbacks.onError?.({ message: 'Failed to end quiz' });
+        }
     };
 
     const submitAnswer = (sessionId: string, participantId: string, questionId: string, optionId: string) => {

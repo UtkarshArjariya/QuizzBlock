@@ -100,6 +100,75 @@ export default function LiveQuizParticipant({
     });
   }, [participant, account]);
 
+  // Polling for quiz status and current question updates
+  useEffect(() => {
+    if (!session?.code) return;
+
+    const pollForQuizUpdates = async () => {
+      try {
+        const response = await fetch(`/api/quiz-sessions/${session.code}`);
+        if (!response.ok) return;
+
+        const data = await response.json();
+        if (data.success && data.session) {
+          const updatedSession = data.session;
+
+          // Update session state
+          setSession(updatedSession);
+
+          // Check if quiz status changed
+          if (
+            updatedSession.status === "active" &&
+            session.status === "waiting"
+          ) {
+            toast.success("Quiz started!");
+          }
+
+          // Update current question if quiz is active
+          if (
+            updatedSession.status === "active" &&
+            updatedSession.currentQuestionIndex >= 0
+          ) {
+            const currentQ =
+              updatedSession.quiz.questions[
+                updatedSession.currentQuestionIndex
+              ];
+            if (currentQ && currentQ.id !== currentQuestion?.id) {
+              setCurrentQuestion(currentQ);
+              setCurrentQuestionIndex(updatedSession.currentQuestionIndex);
+              setHasAnswered(false);
+              setSelectedOption("");
+              setQuestionStartTime(Date.now());
+
+              if (currentQuestion) {
+                toast("New question available!");
+              }
+            }
+          }
+
+          // Check if quiz ended
+          if (updatedSession.status === "ended" && session.status !== "ended") {
+            toast.success("Quiz ended! Check results.");
+            setCurrentQuestion(null);
+          }
+        }
+      } catch (error) {
+        console.error("Error polling for quiz updates:", error);
+      }
+    };
+
+    // Poll every 2 seconds
+    const pollInterval = setInterval(pollForQuizUpdates, 2000);
+
+    // Initial poll
+    const initialPoll = setTimeout(pollForQuizUpdates, 500);
+
+    return () => {
+      clearInterval(pollInterval);
+      clearTimeout(initialPoll);
+    };
+  }, [session?.code, session?.status, currentQuestion?.id]);
+
   const handleJoinQuiz = () => {
     if (!isConnected || !account) {
       toast.error("Please connect your wallet first");
@@ -120,17 +189,17 @@ export default function LiveQuizParticipant({
     }
 
     try {
-      const response = await fetch('/api/quiz-sessions/answer', {
-        method: 'POST',
+      const response = await fetch("/api/quiz-sessions/answer", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({
           sessionId: session.id,
           participantId: participant.id,
           questionId: currentQuestion.id,
-          optionId: selectedOption
-        })
+          optionId: selectedOption,
+        }),
       });
 
       const data = await response.json();
@@ -138,19 +207,21 @@ export default function LiveQuizParticipant({
       if (data.success) {
         setHasAnswered(true);
         // Update participant score
-        setParticipant(prev => prev ? { ...prev, score: data.score } : null);
-        
+        setParticipant((prev) =>
+          prev ? { ...prev, score: data.score } : null
+        );
+
         if (data.isCorrect) {
           toast.success("Correct answer! 🎉");
         } else {
           toast("Answer submitted!");
         }
       } else {
-        toast.error(data.error || 'Failed to submit answer');
+        toast.error(data.error || "Failed to submit answer");
       }
     } catch (error) {
-      console.error('Error submitting answer:', error);
-      toast.error('Failed to submit answer');
+      console.error("Error submitting answer:", error);
+      toast.error("Failed to submit answer");
     }
   };
 
