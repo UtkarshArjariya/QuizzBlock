@@ -1,10 +1,12 @@
 "use client";
 
 import HomeCard from "@/components/quiz/HomeCard";
+import EventQuizCard from "@/components/quiz/EventQuizCard";
 import { useGlobalContext } from "@/context/globalContext";
 import { useWeb3 } from "@/context/Web3Context";
 import { ICategory } from "@/types/types";
 import { Button } from "@/components/ui/button";
+import { eventQuizzes } from "@/data/eventQuizzes";
 
 export default function Home() {
   const { categories } = useGlobalContext();
@@ -24,24 +26,20 @@ export default function Home() {
             Kwizi is your gateway to fun, interactive quizzes on the Avalanche network. Challenge yourself, learn new things, and earn crypto rewards instantly!
           </p>
         </div>
-      </section>
+      </div>
+    );
+  }
 
-      {/* Quiz Catalog Section */}
-      <section className="px-8 py-12 bg-white/60">
-        <h2 className="text-4xl font-bold text-center mb-4">Quiz Catalog</h2>
-        <p className="text-gray-500 text-center mb-8">Choose a category to start your quiz journey</p>
-        <div className="mt-6 grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-6">
-          {categories.map((category: ICategory) => (
-            <HomeCard key={category.id} category={category} />
-          ))}
-        </div>
-      </section>
+  return (
+    <div>
+      <h1 className="text-4xl font-bold">Quiz Catalog</h1>
+      <p className="text-gray-400 mt-2">Choose a category to start your quiz journey</p>
 
-      {/* Features Section (placeholder for next step) */}
-      {/* <section className="..."> ... </section> */}
-
-      {/* Footer (placeholder for next step) */}
-      {/* <footer className="..."> ... </footer> */}
+      <div className="mt-6 grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-6">
+        {categories.map((category: ICategory) => (
+          <HomeCard key={category.id} category={category} />
+        ))}
+      </div>
     </div>
   );
 }
