@@ -252,5 +252,134 @@
     "startedAt": "2025-09-20T21:58:12.997Z",
     "updatedAt": "2025-09-20T21:58:22.166Z",
     "endedAt": "2025-09-20T21:58:22.157Z"
+  },
+  "MQASGF": {
+    "id": "session-1758412075173-s7xhrbapnl",
+    "code": "MQASGF",
+    "quiz": {
+      "id": "custom-1758412073494",
+      "title": "sex",
+      "description": "bahut saara sex",
+      "categoryId": "custom",
+      "questions": [
+        {
+          "id": "custom-q1",
+          "text": "sex",
+          "difficulty": "medium",
+          "options": [
+            {
+              "id": "custom-q1-opt1",
+              "text": "sex",
+              "isCorrect": true
+            },
+            {
+              "id": "custom-q1-opt2",
+              "text": "sex",
+              "isCorrect": true
+            },
+            {
+              "id": "custom-q1-opt3",
+              "text": "sex",
+              "isCorrect": false
+            },
+            {
+              "id": "custom-q1-opt4",
+              "text": "sex",
+              "isCorrect": false
+            }
+          ]
+        }
+      ],
+      "isEvent": false,
+      "difficulty": "Mixed"
+    },
+    "hostWallet": "0xd7851cd05bf163212bd831fc29f84a20978b5946",
+    "prizeAmount": 1,
+    "status": "ended",
+    "currentQuestionIndex": 0,
+    "participants": [
+      {
+        "id": "participant-1758412155360-e86rqstjyp",
+        "walletAddress": "0x65d3f89663981fc830a7ba7ab64065109155472b",
+        "username": "test",
+        "score": 0,
+        "answers": [],
+        "joinedAt": "2025-09-20T23:49:15.360Z",
+        "isConnected": true
+      }
+    ],
+    "createdAt": "2025-09-20T23:47:55.173Z",
+    "questionTimeLimit": 30,
+    "startedAt": "2025-09-20T23:49:18.822Z",
+    "updatedAt": "2025-09-20T23:49:30.369Z",
+    "endedAt": "2025-09-20T23:49:30.358Z"
+  },
+  "J34GAC": {
+    "id": "session-1758412197764-cas0ibu98a",
+    "code": "J34GAC",
+    "quiz": {
+      "id": "custom-1758412196478",
+      "title": "sex",
+      "description": "bahut saara sex",
+      "categoryId": "custom",
+      "questions": [
+        {
+          "id": "custom-q1",
+          "text": "sex",
+          "difficulty": "medium",
+          "options": [
+            {
+              "id": "custom-q1-opt1",
+              "text": "MQASGF",
+              "isCorrect": true
+            },
+            {
+              "id": "custom-q1-opt2",
+              "text": "MQASGF",
+              "isCorrect": true
+            },
+            {
+              "id": "custom-q1-opt3",
+              "text": "MQASGF",
+              "isCorrect": false
+            },
+            {
+              "id": "custom-q1-opt4",
+              "text": "MQASGF",
+              "isCorrect": false
+            }
+          ]
+        }
+      ],
+      "isEvent": false,
+      "difficulty": "Mixed"
+    },
+    "hostWallet": "0xd7851cd05bf163212bd831fc29f84a20978b5946",
+    "prizeAmount": 1,
+    "status": "active",
+    "currentQuestionIndex": 0,
+    "participants": [
+      {
+        "id": "participant-1758412225744-sj3iyihjxol",
+        "walletAddress": "0x65d3f89663981fc830a7ba7ab64065109155472b",
+        "username": "test",
+        "score": 100,
+        "answers": [
+          {
+            "questionId": "custom-q1",
+            "optionId": "custom-q1-opt1",
+            "isCorrect": true,
+            "answeredAt": "2025-09-20T23:50:38.451Z",
+            "timeToAnswer": 5000
+          }
+        ],
+        "joinedAt": "2025-09-20T23:50:25.745Z",
+        "isConnected": true
+      }
+    ],
+    "createdAt": "2025-09-20T23:49:57.764Z",
+    "questionTimeLimit": 30,
+    "startedAt": "2025-09-20T23:50:29.710Z",
+    "updatedAt": "2025-09-20T23:50:29.724Z"
   }
 }
