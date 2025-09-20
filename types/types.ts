@@ -13,6 +13,19 @@ interface IQuiz {
   image?: string | null;
   categoryId: string;
   questions: IQuestion[];
+  // Event-specific fields
+  isEvent?: boolean;
+  prize?: number;
+  date?: string;
+  time?: string;
+  duration?: string;
+  difficulty?: string;
+  totalSlots?: number;
+  slotsLeft?: number;
+  registrationFee?: number;
+  creator?: string;
+  followers?: string;
+  tags?: string[];
 }
 
 interface IQuestion {
