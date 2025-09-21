@@ -1,5 +1,5 @@
 "use client";
-import { useWeb3 } from "@/context/SimpleWeb3Context";
+import { useWeb3 } from "@/context/Web3Context";
 import React from "react";
 import Loader from "./Loader";
 import Image from "next/image";
