@@ -499,5 +499,197 @@
     "participants": [],
     "createdAt": "2025-09-21T00:00:54.239Z",
     "questionTimeLimit": 30
+  },
+  "ZJNHO1": {
+    "id": "session-1758436832122-zfz202cuxgh",
+    "code": "ZJNHO1",
+    "quiz": {
+      "id": "custom-1758436828895",
+      "title": "Test1",
+      "description": "Custom created quiz",
+      "categoryId": "custom",
+      "questions": [
+        {
+          "id": "custom-q1",
+          "text": "yet",
+          "difficulty": "medium",
+          "options": [
+            {
+              "id": "custom-q1-opt1",
+              "text": "yet",
+              "isCorrect": true
+            },
+            {
+              "id": "custom-q1-opt2",
+              "text": "yet",
+              "isCorrect": true
+            },
+            {
+              "id": "custom-q1-opt3",
+              "text": "yet",
+              "isCorrect": false
+            },
+            {
+              "id": "custom-q1-opt4",
+              "text": "yet",
+              "isCorrect": false
+            }
+          ]
+        }
+      ],
+      "isEvent": false,
+      "difficulty": "Mixed"
+    },
+    "hostWallet": "0xdf8eFc313D0706358a31c91bfc12E44Bb13A89De",
+    "prizeAmount": 1,
+    "status": "waiting",
+    "currentQuestionIndex": -1,
+    "participants": [],
+    "createdAt": "2025-09-21T06:40:32.122Z",
+    "questionTimeLimit": 30
+  },
+  "RCIPID": {
+    "id": "session-1758436832142-726te8q0p7",
+    "code": "RCIPID",
+    "quiz": {
+      "id": "custom-1758436828895",
+      "title": "Test1",
+      "description": "Custom created quiz",
+      "categoryId": "custom",
+      "questions": [
+        {
+          "id": "custom-q1",
+          "text": "yet",
+          "difficulty": "medium",
+          "options": [
+            {
+              "id": "custom-q1-opt1",
+              "text": "yet",
+              "isCorrect": true
+            },
+            {
+              "id": "custom-q1-opt2",
+              "text": "yet",
+              "isCorrect": true
+            },
+            {
+              "id": "custom-q1-opt3",
+              "text": "yet",
+              "isCorrect": false
+            },
+            {
+              "id": "custom-q1-opt4",
+              "text": "yet",
+              "isCorrect": false
+            }
+          ]
+        }
+      ],
+      "isEvent": false,
+      "difficulty": "Mixed"
+    },
+    "hostWallet": "0xdf8eFc313D0706358a31c91bfc12E44Bb13A89De",
+    "prizeAmount": 1,
+    "status": "waiting",
+    "currentQuestionIndex": -1,
+    "participants": [],
+    "createdAt": "2025-09-21T06:40:32.142Z",
+    "questionTimeLimit": 30
+  },
+  "TPO84Y": {
+    "id": "session-1758436832470-ru1od0xy96",
+    "code": "TPO84Y",
+    "quiz": {
+      "id": "custom-1758436828895",
+      "title": "Test1",
+      "description": "Custom created quiz",
+      "categoryId": "custom",
+      "questions": [
+        {
+          "id": "custom-q1",
+          "text": "yet",
+          "difficulty": "medium",
+          "options": [
+            {
+              "id": "custom-q1-opt1",
+              "text": "yet",
+              "isCorrect": true
+            },
+            {
+              "id": "custom-q1-opt2",
+              "text": "yet",
+              "isCorrect": true
+            },
+            {
+              "id": "custom-q1-opt3",
+              "text": "yet",
+              "isCorrect": false
+            },
+            {
+              "id": "custom-q1-opt4",
+              "text": "yet",
+              "isCorrect": false
+            }
+          ]
+        }
+      ],
+      "isEvent": false,
+      "difficulty": "Mixed"
+    },
+    "hostWallet": "0xdf8eFc313D0706358a31c91bfc12E44Bb13A89De",
+    "prizeAmount": 1,
+    "status": "waiting",
+    "currentQuestionIndex": -1,
+    "participants": [],
+    "createdAt": "2025-09-21T06:40:32.470Z",
+    "questionTimeLimit": 30
+  },
+  "P5R65X": {
+    "id": "session-1758437185730-1yj8ug1fhk1",
+    "code": "P5R65X",
+    "quiz": {
+      "id": "custom-1758437184227",
+      "title": "sex",
+      "description": "bahut saara sex",
+      "categoryId": "custom",
+      "questions": [
+        {
+          "id": "custom-q1",
+          "text": "sex",
+          "difficulty": "medium",
+          "options": [
+            {
+              "id": "custom-q1-opt1",
+              "text": "yet",
+              "isCorrect": true
+            },
+            {
+              "id": "custom-q1-opt2",
+              "text": "yet",
+              "isCorrect": false
+            },
+            {
+              "id": "custom-q1-opt3",
+              "text": "yet",
+              "isCorrect": true
+            },
+            {
+              "id": "custom-q1-opt4",
+              "text": "yet",
+              "isCorrect": false
+            }
+          ]
+        }
+      ],
+      "isEvent": false,
+      "difficulty": "Mixed"
+    },
+    "hostWallet": "0xdf8eFc313D0706358a31c91bfc12E44Bb13A89De",
+    "prizeAmount": 1,
+    "status": "waiting",
+    "currentQuestionIndex": -1,
+    "participants": [],
+    "createdAt": "2025-09-21T06:46:25.730Z",
+    "questionTimeLimit": 30
   }
 }

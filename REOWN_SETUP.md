@@ -16,7 +16,7 @@ This project now uses Reown AppKit (formerly WalletConnect) instead of MetaMask-
 Create a `.env.local` file in your project root and add:
 
 ```bash
-NEXT_PUBLIC_PROJECT_ID=your-project-id-here
+http://localhost:3000/all-quizzeshttp://localhost:3000/all-quizzesNEXT_PUBLIC_PROJECT_ID=your-project-id-here
 ```
 
 Replace `your-project-id-here` with your actual Project ID from step 1.
