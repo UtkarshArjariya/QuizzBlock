@@ -25,7 +25,7 @@ function Header() {
       link: "/",
     },
     {
-      name: "All Quizzes",
+      name: "My Quizzes",
       icon: (
         <svg xmlns="http://www.w3.org/2000/svg" enableBackground="new 0 0 24 24" height="24" viewBox="0 0 24 24" width="24" fill="currentColor">
           <g><path d="M0,0h24v24H0V0z" fill="none"/></g>
@@ -38,7 +38,7 @@ function Header() {
       link: "/all-quizzes",
     },
     {
-      name: "My Stats",
+      name: "All Quizzes",
       icon: chart,
       link: "/stats",
     },
