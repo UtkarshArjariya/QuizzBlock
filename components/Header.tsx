@@ -38,7 +38,7 @@ function Header() {
       link: "/all-quizzes",
     },
     {
-      name: "All Quizzes",
+      name: "my stats",
       icon: chart,
       link: "/stats",
     },
