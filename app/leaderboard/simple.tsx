@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 
-export default function LeaderboardPage() {
+export default function SimpleLeaderboardPage() {
   const [mounted, setMounted] = useState(false);
   const [sessionCode, setSessionCode] = useState<string>("");
   const [message, setMessage] = useState<string>("Loading...");
