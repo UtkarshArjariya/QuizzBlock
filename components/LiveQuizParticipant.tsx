@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import { useWebSocket } from "@/hooks/useWebSocketAPI";
-import { useWeb3 } from "@/context/Web3Context";
+import { useWeb3 } from "@/context/SimpleWeb3Context";
 import {
   ILiveQuizSession,
   ILiveParticipant,

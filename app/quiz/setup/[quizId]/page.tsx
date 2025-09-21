@@ -10,7 +10,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { useGlobalContext } from "@/context/globalContext";
-import { useWeb3 } from "@/context/Web3Context";
+import { useWeb3 } from "@/context/SimpleWeb3Context";
 import { play } from "@/utils/Icons";
 import axios from "axios";
 import { useRouter } from "next/navigation";

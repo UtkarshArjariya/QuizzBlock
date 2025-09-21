@@ -196,3 +196,7 @@ export const eventQuizzes: IQuiz[] = [
     ]
   }
 ];
+
+export function getAllEventQuizzes(): IQuiz[] {
+  return eventQuizzes;
+}
