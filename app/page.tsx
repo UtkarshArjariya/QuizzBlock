@@ -16,7 +16,7 @@
 
 import HomeCard from "@/components/quiz/HomeCard";
 import { useGlobalContext } from "@/context/globalContext";
-import { useWeb3 } from "@/context/Web3Context";
+import { useWeb3 } from "@/context/SimpleWeb3Context";
 import { ICategory } from "@/types/types";
 import { Button } from "@/components/ui/button";
 

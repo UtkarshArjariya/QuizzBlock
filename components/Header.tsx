@@ -1,6 +1,6 @@
 "use client";
 import { chart, home, login } from "@/utils/Icons";
-import { useWeb3 } from "@/context/Web3Context";
+import { useWeb3 } from "@/context/SimpleWeb3Context";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -10,14 +10,11 @@ import { Button } from "./ui/button";
 function Header() {
   const pathname = usePathname();
   const {
-    account,
     isConnected,
     isConnecting,
-    isCorrectNetwork,
     isInitialized,
     connectWallet,
     disconnectWallet,
-    switchToAvalanche,
     isWalletInstalled,
   } = useWeb3();
 
@@ -47,10 +44,6 @@ function Header() {
     },
   ];
 
-  const formatAddress = (address: string) => {
-    if (!address) return "";
-    return `${address.slice(0, 6)}...${address.slice(-4)}`;
-  };
 
   return (
     <header className="min-h-[8vh] px-[10rem] xl:px-[15rem] border-b-2 flex items-center">
@@ -97,28 +90,12 @@ function Header() {
           {!isInitialized ? (
             <div className="w-32 h-12 bg-gray-200 animate-pulse rounded-lg"></div>
           ) : isConnected ? (
-            <div className="flex items-center gap-3">
-              {!isCorrectNetwork && (
-                <Button
-                  onClick={switchToAvalanche}
-                  className="py-2 px-4 bg-orange-500 hover:bg-orange-600 text-white text-sm rounded-lg"
-                >
-                  Switch to Avalanche
-                </Button>
-              )}
-              <div className="flex items-center gap-2 bg-gray-800 px-4 py-2 rounded-lg">
-                <div className="w-3 h-3 bg-green-500 rounded-full"></div>
-                <span className="text-white font-mono text-sm">
-                  {formatAddress(account)}
-                </span>
-              </div>
-              <Button
-                onClick={disconnectWallet}
-                className="py-2 px-4 bg-red-500 hover:bg-red-600 text-white text-sm rounded-lg"
-              >
-                Disconnect
-              </Button>
-            </div>
+            <Button
+              onClick={disconnectWallet}
+              className="py-2 px-4 bg-red-500 hover:bg-red-600 text-white text-sm rounded-lg"
+            >
+              Disconnect
+            </Button>
           ) : (
             <Button
               className="py-5 bg-blue-400 flex items-center gap-2 font-semibold text-lg rounded-lg

@@ -1,256 +1,152 @@
-/**
- * All Quizzes Page Component
- * 
- * This page displays all quizzes from all categories in one place, including:
- * - All Live Quiz Events (with prizes and registration)
- * - All Practice Quizzes (regular quiz content)
- * 
- * The page is organized into two main sections:
- * 1. Event Quizzes - All special quizzes with prizes and registration fees
- * 2. Practice Quizzes - All regular quizzes for learning and practice
- * 
- * @returns JSX element for the all quizzes page
- */
+"use client";
 
-import React from "react";
-import { IQuiz } from "@/types/types";
-import QuizCard from "@/components/quiz/QuizCard";
-import EventQuizCard from "@/components/quiz/EventQuizCard";
-import { getAllEventQuizzes } from "@/data/eventQuizzes";
+import React, { useState } from "react";
+import { Button } from "@/components/ui/button";
 
-async function AllQuizzesPage() {
-  // Get all event quizzes
-  const eventQuizzes = getAllEventQuizzes();
+function AllQuizzesPage() {
+  const [quizCode, setQuizCode] = useState("");
 
-  // Mock regular quiz data for all categories (database setup is optional)
-  const mockQuizzes: IQuiz[] = [
-    // Physics & Science quizzes
-    {
-      id: "physics-1",
-      title: "Physics Fundamentals",
-      description: "Test your knowledge of basic physics concepts",
-      image: "/categories/image--physics.svg",
-      categoryId: "1",
-      questions: [
-        {
-          id: "p1",
-          text: "What is the SI unit of force?",
-          difficulty: "easy",
-          options: [
-            { id: "pa1", text: "Newton", isCorrect: true },
-            { id: "pa2", text: "Joule", isCorrect: false },
-            { id: "pa3", text: "Watt", isCorrect: false },
-            { id: "pa4", text: "Pascal", isCorrect: false }
-          ]
-        }
-      ]
-    },
-    {
-      id: "physics-2",
-      title: "Quantum Mechanics Basics",
-      description: "Explore the fascinating world of quantum physics",
-      image: "/categories/image--science.svg",
-      categoryId: "1",
-      questions: [
-        {
-          id: "q1",
-          text: "What is the uncertainty principle?",
-          difficulty: "medium",
-          options: [
-            { id: "qa1", text: "Heisenberg's principle", isCorrect: true },
-            { id: "qa2", text: "Einstein's principle", isCorrect: false },
-            { id: "qa3", text: "Newton's principle", isCorrect: false },
-            { id: "qa4", text: "Schrodinger's principle", isCorrect: false }
-          ]
-        }
-      ]
-    },
-    // Computer Science & Technology quizzes
-    {
-      id: "cs-1",
-      title: "Computer Science Basics",
-      description: "Test your knowledge of fundamental computer science concepts",
-      image: "/categories/image--computer-science.svg",
-      categoryId: "2",
-      questions: [
-        {
-          id: "c1",
-          text: "What is the time complexity of binary search?",
-          difficulty: "medium",
-          options: [
-            { id: "ca1", text: "O(n)", isCorrect: false },
-            { id: "ca2", text: "O(log n)", isCorrect: true },
-            { id: "ca3", text: "O(n²)", isCorrect: false },
-            { id: "ca4", text: "O(1)", isCorrect: false }
-          ]
-        }
-      ]
-    },
-    {
-      id: "cs-2",
-      title: "Programming Fundamentals",
-      description: "Basic programming concepts and principles",
-      image: "/categories/image--programming.svg",
-      categoryId: "2",
-      questions: [
-        {
-          id: "c2",
-          text: "What is a variable in programming?",
-          difficulty: "easy",
-          options: [
-            { id: "cb1", text: "A function", isCorrect: false },
-            { id: "cb2", text: "A storage location", isCorrect: true },
-            { id: "cb3", text: "A loop", isCorrect: false },
-            { id: "cb4", text: "A class", isCorrect: false }
-          ]
-        }
-      ]
-    },
-    // Mathematics quizzes
-    {
-      id: "math-1",
-      title: "Calculus Basics",
-      description: "Test your calculus knowledge",
-      image: "/categories/image--mathematics.svg",
-      categoryId: "3",
-      questions: [
-        {
-          id: "m1",
-          text: "What is the derivative of x²?",
-          difficulty: "easy",
-          options: [
-            { id: "ma1", text: "2x", isCorrect: true },
-            { id: "ma2", text: "x", isCorrect: false },
-            { id: "ma3", text: "x²", isCorrect: false },
-            { id: "ma4", text: "2", isCorrect: false }
-          ]
-        }
-      ]
-    },
-    // Chemistry quizzes
-    {
-      id: "chem-1",
-      title: "Chemical Reactions",
-      description: "Learn about different types of chemical reactions",
-      image: "/categories/image--chemistry.svg",
-      categoryId: "4",
-      questions: [
-        {
-          id: "ch1",
-          text: "What is the chemical formula for water?",
-          difficulty: "easy",
-          options: [
-            { id: "cha1", text: "H2O", isCorrect: true },
-            { id: "cha2", text: "CO2", isCorrect: false },
-            { id: "cha3", text: "NaCl", isCorrect: false },
-            { id: "cha4", text: "O2", isCorrect: false }
-          ]
-        }
-      ]
-    },
-    // Biology quizzes
-    {
-      id: "bio-1",
-      title: "Cell Biology",
-      description: "Test your knowledge of cell structures and functions",
-      image: "/categories/image--biology.svg",
-      categoryId: "5",
-      questions: [
-        {
-          id: "b1",
-          text: "What is the powerhouse of the cell?",
-          difficulty: "easy",
-          options: [
-            { id: "ba1", text: "Mitochondria", isCorrect: true },
-            { id: "ba2", text: "Nucleus", isCorrect: false },
-            { id: "ba3", text: "Ribosome", isCorrect: false },
-            { id: "ba4", text: "Golgi apparatus", isCorrect: false }
-          ]
-        }
-      ]
+  const handleJoinQuiz = () => {
+    if (!quizCode.trim()) {
+      alert("Please enter a quiz code");
+      return;
     }
-  ];
+    // Navigate to quiz with code
+    window.location.href = `/quiz?code=${quizCode}`;
+  };
+
+  const handleHostQuiz = () => {
+    // Navigate to quiz hosting
+    window.location.href = "/live-quiz";
+  };
 
   return (
-    <div className="space-y-8">
+    <div className="max-w-6xl mx-auto space-y-8">
       <div className="text-center">
-        <h1 className="text-5xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-4">
-          All Tech Quizzes
+        <h1 className="text-5xl font-bold text-blue-600 mb-4">
+          Live Quiz Arena
         </h1>
-        <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-          Explore all available Web3 and tech quizzes. Join live events with real crypto prizes 
-          or practice with our comprehensive question banks covering Blockchain, DeFi, AR/VR, 
-          AI/ML, Software Development, and cutting-edge technology!
+        <p className="text-xl text-gray-600">
+          Host or join real-time quiz competitions with crypto rewards!
         </p>
       </div>
 
-      {/* Event Quizzes Section */}
-      {eventQuizzes.length > 0 && (
-        <div>
-          <div className="flex items-center justify-between mb-6">
-            <div>
-              <h2 className="text-3xl font-bold text-purple-600 mb-2">🎯 Live Web3 Events</h2>
-              <p className="text-gray-600">Join exciting blockchain and tech quiz competitions with real crypto prizes!</p>
-            </div>
-            <div className="bg-purple-100 text-purple-800 px-4 py-2 rounded-full font-semibold">
-              {eventQuizzes.length} Events
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        {/* Host a Live Quiz Card */}
+        <div className="bg-white rounded-lg shadow-lg p-8">
+          <h2 className="text-2xl font-bold text-blue-600 mb-4 text-center">Host a Live Quiz</h2>
+          
+          <div className="flex justify-center mb-6">
+            <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center">
+              <svg className="w-8 h-8 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z" />
+              </svg>
             </div>
           </div>
           
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
-            {eventQuizzes.map((quiz) => (
-              <EventQuizCard key={quiz.id} quiz={quiz} />
-            ))}
+          <p className="text-gray-600 text-center mb-6">
+            Create a live quiz session, set prize amounts, and control the quiz flow in real-time.
+          </p>
+          
+          <div className="space-y-3 mb-8">
+            <div className="flex items-center gap-3">
+              <svg className="w-5 h-5 text-gray-600" fill="currentColor" viewBox="0 0 20 20">
+                <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+              </svg>
+              <span className="text-gray-700">Set custom prize amounts</span>
+            </div>
+            <div className="flex items-center gap-3">
+              <svg className="w-5 h-5 text-gray-600" fill="currentColor" viewBox="0 0 20 20">
+                <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+              </svg>
+              <span className="text-gray-700">Control question timing</span>
+            </div>
+            <div className="flex items-center gap-3">
+              <svg className="w-5 h-5 text-gray-600" fill="currentColor" viewBox="0 0 20 20">
+                <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+              </svg>
+              <span className="text-gray-700">Real-time participant tracking</span>
+            </div>
+            <div className="flex items-center gap-3">
+              <svg className="w-5 h-5 text-gray-600" fill="currentColor" viewBox="0 0 20 20">
+                <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+              </svg>
+              <span className="text-gray-700">Automatic result generation</span>
+            </div>
           </div>
+          
+          <Button
+            onClick={handleHostQuiz}
+            className="w-full py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg"
+          >
+            Host a Quiz
+          </Button>
         </div>
-      )}
 
-      {/* Practice Quizzes Section */}
-      <div>
-        <div className="flex items-center justify-between mb-6">
+        {/* Join a Live Quiz Card */}
+        <div className="bg-white rounded-lg shadow-lg p-8">
+          <h2 className="text-2xl font-bold text-purple-600 mb-4 text-center">Join a Live Quiz</h2>
+          
+          <div className="flex justify-center mb-6">
+            <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center">
+              <svg className="w-8 h-8 text-purple-600" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z" />
+              </svg>
+            </div>
+          </div>
+          
+          <p className="text-gray-600 text-center mb-6">
+            Enter a quiz code to join a live competition and compete for crypto prizes!
+          </p>
+          
+          <div className="space-y-4 mb-8">
             <div>
-              <h2 className="text-3xl font-bold text-blue-600 mb-2">💻 Tech Practice Quizzes</h2>
-              <p className="text-gray-600">Test your Web3 and technology knowledge with these practice quizzes</p>
-            </div>
-          <div className="bg-blue-100 text-blue-800 px-4 py-2 rounded-full font-semibold">
-            {mockQuizzes.length} Quizzes
-          </div>
-        </div>
-        
-        {mockQuizzes.length > 0 ? (
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            {mockQuizzes.map((quiz) => (
-              <QuizCard key={quiz.id} quiz={quiz} />
-            ))}
-          </div>
-        ) : (
-          <div className="text-center py-12">
-            <h3 className="text-xl text-gray-500">No practice quizzes available yet</h3>
-            <p className="text-gray-400 mt-2">Check back later for new content!</p>
-          </div>
-        )}
-      </div>
-
-      {/* Summary Section */}
-      <div className="mt-16 bg-gradient-to-r from-blue-50 to-purple-50 rounded-2xl p-8">
-        <div className="text-center">
-          <h3 className="text-2xl font-bold mb-4">Quiz Statistics</h3>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="bg-white rounded-lg p-6 shadow-sm">
-              <div className="text-3xl font-bold text-purple-600 mb-2">{eventQuizzes.length}</div>
-              <div className="text-gray-600">Live Events</div>
-            </div>
-            <div className="bg-white rounded-lg p-6 shadow-sm">
-              <div className="text-3xl font-bold text-blue-600 mb-2">{mockQuizzes.length}</div>
-              <div className="text-gray-600">Practice Quizzes</div>
-            </div>
-            <div className="bg-white rounded-lg p-6 shadow-sm">
-              <div className="text-3xl font-bold text-green-600 mb-2">
-                ₹{eventQuizzes.reduce((total, quiz) => total + (quiz.prize || 0), 0).toLocaleString()}
-              </div>
-              <div className="text-gray-600">Total Prize Pool</div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                Enter Quiz Code
+              </label>
+              <input
+                type="text"
+                value={quizCode}
+                onChange={(e) => setQuizCode(e.target.value)}
+                placeholder="Enter quiz code (e.g., ABC123)"
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+              />
             </div>
           </div>
+          
+          <div className="space-y-3 mb-8">
+            <div className="flex items-center gap-3">
+              <svg className="w-5 h-5 text-gray-600" fill="currentColor" viewBox="0 0 20 20">
+                <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+              </svg>
+              <span className="text-gray-700">Real-time synchronization</span>
+            </div>
+            <div className="flex items-center gap-3">
+              <svg className="w-5 h-5 text-gray-600" fill="currentColor" viewBox="0 0 20 20">
+                <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+              </svg>
+              <span className="text-gray-700">Live leaderboards</span>
+            </div>
+            <div className="flex items-center gap-3">
+              <svg className="w-5 h-5 text-gray-600" fill="currentColor" viewBox="0 0 20 20">
+                <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+              </svg>
+              <span className="text-gray-700">Instant scoring</span>
+            </div>
+            <div className="flex items-center gap-3">
+              <svg className="w-5 h-5 text-gray-600" fill="currentColor" viewBox="0 0 20 20">
+                <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+              </svg>
+              <span className="text-gray-700">Win crypto rewards</span>
+            </div>
+          </div>
+          
+          <Button
+            onClick={handleJoinQuiz}
+            className="w-full py-3 bg-purple-600 hover:bg-purple-700 text-white font-semibold rounded-lg"
+          >
+            Join a Quiz
+          </Button>
         </div>
       </div>
     </div>

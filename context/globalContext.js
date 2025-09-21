@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import useCategories from "./useCategories";
-import { useWeb3 } from "./Web3Context";
+import { useWeb3 } from "./SimpleWeb3Context";
 import axios from "axios";
 
 const GlobalContext = React.createContext();

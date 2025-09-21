@@ -1,7 +1,7 @@
 "use client";
 import { Button } from "@/components/ui/button";
 import { useGlobalContext } from "@/context/globalContext";
-import { useWeb3 } from "@/context/Web3Context";
+import { useWeb3 } from "@/context/SimpleWeb3Context";
 import { IOption, IQuestion, IResponse } from "@/types/types";
 import { flag, next } from "@/utils/Icons";
 import axios from "axios";

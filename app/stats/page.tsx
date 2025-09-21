@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import UserStats from "@/components/UserStats";
-import { useWeb3 } from "@/context/Web3Context";
+import { useWeb3 } from "@/context/SimpleWeb3Context";
 import { useEffect, useState } from "react";
 
 function StatsPage() {
