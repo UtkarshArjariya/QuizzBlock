@@ -499,5 +499,107 @@
     "participants": [],
     "createdAt": "2025-09-21T00:00:54.239Z",
     "questionTimeLimit": 30
+  },
+  "S2P4GI": {
+    "id": "session-1758437354257-26xj7o12e9v",
+    "code": "S2P4GI",
+    "quiz": {
+      "id": "custom-1758437349202",
+      "title": "lund",
+      "description": "lelo",
+      "categoryId": "custom",
+      "questions": [
+        {
+          "id": "custom-q1",
+          "text": "sex",
+          "difficulty": "medium",
+          "options": [
+            {
+              "id": "custom-q1-opt1",
+              "text": "chahiye",
+              "isCorrect": true
+            },
+            {
+              "id": "custom-q1-opt2",
+              "text": "chahiye",
+              "isCorrect": false
+            },
+            {
+              "id": "custom-q1-opt3",
+              "text": "chahiye",
+              "isCorrect": true
+            },
+            {
+              "id": "custom-q1-opt4",
+              "text": "chahiye",
+              "isCorrect": false
+            }
+          ]
+        },
+        {
+          "id": "custom-q2",
+          "text": "chahiye",
+          "difficulty": "medium",
+          "options": [
+            {
+              "id": "custom-q2-opt1",
+              "text": "sex",
+              "isCorrect": true
+            },
+            {
+              "id": "custom-q2-opt2",
+              "text": "sex",
+              "isCorrect": true
+            },
+            {
+              "id": "custom-q2-opt3",
+              "text": "sex",
+              "isCorrect": false
+            },
+            {
+              "id": "custom-q2-opt4",
+              "text": "sex",
+              "isCorrect": false
+            }
+          ]
+        },
+        {
+          "id": "custom-q3",
+          "text": "lund",
+          "difficulty": "medium",
+          "options": [
+            {
+              "id": "custom-q3-opt1",
+              "text": "lunga",
+              "isCorrect": true
+            },
+            {
+              "id": "custom-q3-opt2",
+              "text": "lunga",
+              "isCorrect": true
+            },
+            {
+              "id": "custom-q3-opt3",
+              "text": "lunga",
+              "isCorrect": false
+            },
+            {
+              "id": "custom-q3-opt4",
+              "text": "lunga",
+              "isCorrect": false
+            }
+          ]
+        }
+      ],
+      "isEvent": false,
+      "difficulty": "Mixed"
+    },
+    "hostWallet": "0xd7851cd05bf163212bd831fc29f84a20978b5946",
+    "prizeAmount": 1,
+    "status": "waiting",
+    "currentQuestionIndex": -1,
+    "participants": [],
+    "createdAt": "2025-09-21T06:49:14.257Z",
+    "questionTimeLimit": 30
   }
 }

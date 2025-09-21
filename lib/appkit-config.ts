@@ -8,29 +8,13 @@ if (!projectId) {
   console.warn('NEXT_PUBLIC_PROJECT_ID is not set. Please set it in your .env.local file.');
 }
 
-// AppKit configuration - MetaMask only
+// AppKit configuration - Updated for latest version
 export const appKitOptions: AppKitOptions = {
   projectId: projectId || 'demo-project-id',
   networks: [avalanche],
-  wallets: [
-    {
-      id: 'metamask',
-      name: 'MetaMask',
-      homepage: 'https://metamask.io',
-      imageId: '0a52e96a-0b70-4cbf-83d0-2b9a3b7c5c8c',
-      mobile: {
-        native: 'metamask://',
-        universal: 'https://metamask.app.link',
-      },
-      desktop: {
-        native: 'metamask://',
-        universal: 'https://metamask.app.link',
-      },
-    },
-  ],
   metadata: {
     name: 'QuizBlock',
-    description: 'Web3 and Tech Quiz Platform',
+    description: 'Decentralized Quiz Platform',
     url: typeof window !== 'undefined' ? window.location.origin : 'https://quizblock.com',
     icons: ['/icon--logo-lg.png']
   },

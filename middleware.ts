@@ -1,5 +1,5 @@
-import arcjet, { detectBot, shield } from "@arcjet/next";
 import { NextResponse } from "next/server";
+import type { NextRequest } from "next/server";
 
 export const config = {
   matcher: [
@@ -10,59 +10,54 @@ export const config = {
   ],
 };
 
-// Only initialize Arcjet if the key is provided
-const aj = process.env.ARCJET_KEY && process.env.ARCJET_KEY !== "arcjet_key_placeholder" 
-  ? arcjet({
-      key: process.env.ARCJET_KEY,
-      rules: [
-        // shield protects against common attacks such as SQL injection, XSS, etc
-        shield(
-          { mode: "DRY_RUN" } // Use DRY_RUN for development, LIVE for production
-        ),
+// Simple rate limiting middleware
+const rateLimitMap = new Map();
 
-        detectBot({
-          mode: "DRY_RUN", // Use DRY_RUN for development, LIVE for production
-          // Block all bots except the following
-          allow: [
-            "CATEGORY:SEARCH_ENGINE",
-            "CURL",
-            "VERCEL_MONITOR_PREVIEW", // Vercel preview bot
-            // Google, Bing, etc
-            // Uncomment to allow these other common bot categories
-            // See the full list at https://arcjet.com/bot-list
-            //"CATEGORY:MONITOR", // Uptime monitoring services
-            //"CATEGORY:PREVIEW", // Link previews e.g. Slack, Discord
-          ],
-        }),
-      ],
-    })
-  : null;
+function rateLimit(ip: string, limit = 100, window = 60000) {
+  const now = Date.now();
+  const windowStart = now - window;
 
-// define public routes (no authentication required)
+  if (!rateLimitMap.has(ip)) {
+    rateLimitMap.set(ip, []);
+  }
+
+  const requests = rateLimitMap.get(ip);
+  const validRequests = requests.filter((time: number) => time > windowStart);
+
+  if (validRequests.length >= limit) {
+    return false;
+  }
+
+  validRequests.push(now);
+  rateLimitMap.set(ip, validRequests);
+
+  return true;
+}
+
+// Define public routes (no authentication required)
 const isPublicRoute = (pathname: string) => {
   const publicRoutes = [
     "/",
     "/api/categories",
     "/api/user/register",
   ];
-  
+
   return publicRoutes.some(route => pathname.startsWith(route));
 };
 
-export default async function middleware(req: any) {
-  // run arcjet middleware first (only if configured)
-  if (aj) {
-    const decision = await aj.protect(req);
+export default async function middleware(req: NextRequest) {
+  // Get client IP for rate limiting
+  const ip = req.headers.get('x-forwarded-for') || req.headers.get('x-real-ip') || 'unknown';
 
-    if (decision.isDenied()) {
-      return NextResponse.json(
-        { error: "Forbidden", reason: decision.reason },
-        { status: 403 }
-      );
-    }
+  // Apply rate limiting
+  if (!rateLimit(ip, 100, 60000)) { // 100 requests per minute
+    return NextResponse.json(
+      { error: "Too many requests" },
+      { status: 429 }
+    );
   }
 
-  // skip authentication for public routes
+  // Skip authentication for public routes
   if (isPublicRoute(req.nextUrl.pathname)) {
     return NextResponse.next();
   }
