@@ -32,15 +32,15 @@ export default function RootLayout({
           referrerPolicy="no-referrer"
         />
       </head>
-      <ContextProvider>
-        <body className={`${nunito.className} antialiased`} suppressHydrationWarning={true}>
+      <body className={`${nunito.className} antialiased`} suppressHydrationWarning={true}>
+        <ContextProvider>
           <Toaster position="top-center" />
           <Header />
           <main className="py-8 mx-[15rem] xl:mx-[25rem] h-full">
             {children}
           </main>
-        </body>
-      </ContextProvider>
+        </ContextProvider>
+      </body>
     </html>
   );
 }

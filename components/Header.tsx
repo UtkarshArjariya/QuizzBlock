@@ -18,7 +18,7 @@ function Header() {
     connectWallet,
     disconnectWallet,
     switchToAvalanche,
-    isMetaMaskInstalled,
+    isWalletInstalled,
   } = useWeb3();
 
   const menu = [
@@ -124,7 +124,7 @@ function Header() {
               className="py-5 bg-blue-400 flex items-center gap-2 font-semibold text-lg rounded-lg
             hover:bg-blue-500/90"
               onClick={connectWallet}
-              disabled={isConnecting || !isMetaMaskInstalled()}
+              disabled={isConnecting || !isWalletInstalled()}
             >
               {login}
               {isConnecting ? "Connecting..." : "Connect Wallet"}

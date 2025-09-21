@@ -22,46 +22,13 @@ import { Button } from "@/components/ui/button";
 
 export default function Home() {
   const { categories } = useGlobalContext();
-  const { isConnected, isInitialized, connectWallet, isMetaMaskInstalled } = useWeb3();
+  const { isConnected, isInitialized, connectWallet, isWalletInstalled } = useWeb3();
 
   if (!isInitialized) {
     return (
       <div className="flex flex-col items-center justify-center min-h-[60vh] text-center">
         <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-400"></div>
         <p className="mt-4 text-gray-400">Loading...</p>
-      </div>
-    );
-  }
-
-  if (!isConnected) {
-    return (
-      <div className="flex flex-col items-center justify-center min-h-[60vh] text-center">
-        <div className="bg-gray-800 p-8 rounded-lg border border-gray-700 max-w-md">
-          <h1 className="text-3xl font-bold text-blue-400 mb-4">Welcome to QuizBlock</h1>
-          <p className="text-gray-300 mb-6">
-            Connect your MetaMask wallet to start taking Web3 and tech quizzes on the Avalanche network.
-          </p>
-          {isMetaMaskInstalled() ? (
-            <Button
-              onClick={connectWallet}
-              className="w-full py-3 bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded-lg"
-            >
-              Connect Wallet
-            </Button>
-          ) : (
-            <div className="text-center">
-              <p className="text-red-400 mb-4">MetaMask not detected</p>
-              <a
-                href="https://metamask.io/download/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-blue-400 hover:text-blue-300 underline"
-              >
-                Install MetaMask
-              </a>
-            </div>
-          )}
-        </div>
       </div>
     );
   }
@@ -78,6 +45,7 @@ export default function Home() {
           Join live events with real prizes or practice with our comprehensive tech question banks!
         </p>
       </div>
+
 
       {/* Categories Section */}
       <div>

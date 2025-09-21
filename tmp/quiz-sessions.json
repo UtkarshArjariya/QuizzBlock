@@ -356,7 +356,7 @@
     },
     "hostWallet": "0xd7851cd05bf163212bd831fc29f84a20978b5946",
     "prizeAmount": 1,
-    "status": "active",
+    "status": "ended",
     "currentQuestionIndex": 0,
     "participants": [
       {
@@ -380,6 +380,124 @@
     "createdAt": "2025-09-20T23:49:57.764Z",
     "questionTimeLimit": 30,
     "startedAt": "2025-09-20T23:50:29.710Z",
-    "updatedAt": "2025-09-20T23:50:29.724Z"
+    "updatedAt": "2025-09-20T23:51:50.465Z",
+    "endedAt": "2025-09-20T23:51:50.445Z"
+  },
+  "6FCNHD": {
+    "id": "session-1758412550197-zaae65fh9v",
+    "code": "6FCNHD",
+    "quiz": {
+      "id": "custom-1758412548078",
+      "title": "sex",
+      "description": "sax",
+      "categoryId": "custom",
+      "questions": [
+        {
+          "id": "custom-q1",
+          "text": "sex",
+          "difficulty": "medium",
+          "options": [
+            {
+              "id": "custom-q1-opt1",
+              "text": "sex",
+              "isCorrect": true
+            },
+            {
+              "id": "custom-q1-opt2",
+              "text": "sex",
+              "isCorrect": false
+            },
+            {
+              "id": "custom-q1-opt3",
+              "text": "sex",
+              "isCorrect": true
+            },
+            {
+              "id": "custom-q1-opt4",
+              "text": "sex",
+              "isCorrect": false
+            }
+          ]
+        }
+      ],
+      "isEvent": false,
+      "difficulty": "Mixed"
+    },
+    "hostWallet": "0xd7851cd05bf163212bd831fc29f84a20978b5946",
+    "prizeAmount": 1,
+    "status": "ended",
+    "currentQuestionIndex": 0,
+    "participants": [
+      {
+        "id": "participant-1758412562591-n61e799vdb",
+        "walletAddress": "0x65d3f89663981fc830a7ba7ab64065109155472b",
+        "username": "test",
+        "score": 100,
+        "answers": [
+          {
+            "questionId": "custom-q1",
+            "optionId": "custom-q1-opt1",
+            "isCorrect": true,
+            "answeredAt": "2025-09-20T23:56:14.849Z",
+            "timeToAnswer": 5000
+          }
+        ],
+        "joinedAt": "2025-09-20T23:56:02.592Z",
+        "isConnected": true
+      }
+    ],
+    "createdAt": "2025-09-20T23:55:50.197Z",
+    "questionTimeLimit": 30,
+    "startedAt": "2025-09-20T23:56:06.942Z",
+    "updatedAt": "2025-09-20T23:56:26.226Z",
+    "endedAt": "2025-09-20T23:56:26.213Z"
+  },
+  "30V60H": {
+    "id": "session-1758412854239-l4pzouurwsb",
+    "code": "30V60H",
+    "quiz": {
+      "id": "custom-1758412853038",
+      "title": "Test1",
+      "description": "Custom created quiz",
+      "categoryId": "custom",
+      "questions": [
+        {
+          "id": "custom-q1",
+          "text": "10 wala biscuit kitne ka hai jee",
+          "difficulty": "medium",
+          "options": [
+            {
+              "id": "custom-q1-opt1",
+              "text": "lund lele mera",
+              "isCorrect": false
+            },
+            {
+              "id": "custom-q1-opt2",
+              "text": "10",
+              "isCorrect": true
+            },
+            {
+              "id": "custom-q1-opt3",
+              "text": "0",
+              "isCorrect": false
+            },
+            {
+              "id": "custom-q1-opt4",
+              "text": "option nhi hai idhar sahi",
+              "isCorrect": false
+            }
+          ]
+        }
+      ],
+      "isEvent": false,
+      "difficulty": "Mixed"
+    },
+    "hostWallet": "0xd7851cd05bf163212bd831fc29f84a20978b5946",
+    "prizeAmount": 1,
+    "status": "waiting",
+    "currentQuestionIndex": -1,
+    "participants": [],
+    "createdAt": "2025-09-21T00:00:54.239Z",
+    "questionTimeLimit": 30
   }
 }
