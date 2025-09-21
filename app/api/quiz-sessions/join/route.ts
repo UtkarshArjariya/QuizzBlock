@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { fileSessionStore } from '@/lib/fileSessionStore';
+import { mongoSessionStore } from '@/lib/mongoSessionStore';
 import { ILiveParticipant } from '@/types/types';
 
 export async function POST(req: NextRequest) {
@@ -19,8 +19,8 @@ export async function POST(req: NextRequest) {
 
         console.log('Join request:', { code: code.toUpperCase(), walletAddress, username });
 
-        // Find session by code using fileSessionStore
-        const session = fileSessionStore.getSessionByCode(code.toUpperCase());
+        // Find session by code using MongoDB
+        const session = await mongoSessionStore.getSessionByCode(code.toUpperCase());
 
         if (!session) {
             console.log('Session not found for code:', code.toUpperCase());
@@ -66,8 +66,8 @@ export async function POST(req: NextRequest) {
         // Add participant to session
         session.participants.push(participant);
 
-        // Update session in file store
-        fileSessionStore.updateSession(session.code, { participants: session.participants });
+        // Update session in MongoDB
+        await mongoSessionStore.updateSession(session.code, { participants: session.participants });
 
         console.log('Participant joined successfully:', {
             participantId: participant.id,

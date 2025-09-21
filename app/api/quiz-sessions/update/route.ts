@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { fileSessionStore } from '@/lib/fileSessionStore';
+import { mongoSessionStore } from '@/lib/mongoSessionStore';
 
 export async function POST(request: NextRequest) {
     try {
@@ -10,15 +10,14 @@ export async function POST(request: NextRequest) {
         }
 
         // Get existing session
-        const session = fileSessionStore.getSessionByCode(code);
+        const session = await mongoSessionStore.getSessionByCode(code);
         if (!session) {
             return NextResponse.json({ error: 'Quiz session not found' }, { status: 404 });
         }
 
-        // Update session with provided updates
-        const updateSuccess = fileSessionStore.updateSession(code, {
-            ...updates,
-            updatedAt: new Date().toISOString()
+        // Update session with provided updates in MongoDB
+        const updateSuccess = await mongoSessionStore.updateSession(code, {
+            ...updates
         });
 
         if (!updateSuccess) {
@@ -26,7 +25,7 @@ export async function POST(request: NextRequest) {
         }
 
         // Get updated session
-        const updatedSession = fileSessionStore.getSessionByCode(code);
+        const updatedSession = await mongoSessionStore.getSessionByCode(code);
 
         console.log(`Session ${code} updated:`, updates);
 

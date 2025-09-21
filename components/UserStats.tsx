@@ -24,31 +24,35 @@ function UserStats({ userStats }: any) {
   }
 
   // get the most recent attempt date
-  const recentAttemptDate = userStats?.categoryStats.reduce(
-    (acc: any, curr: any) => {
-      const currentDate = new Date(curr.lastAttempt);
-      return currentDate > acc ? currentDate : acc;
-    },
-    new Date(0)
-  );
+  const recentAttemptDate =
+    userStats?.categoryStats && userStats.categoryStats.length > 0
+      ? userStats.categoryStats.reduce((acc: any, curr: any) => {
+          const currentDate = new Date(curr.lastAttempt);
+          return currentDate > acc ? currentDate : acc;
+        }, new Date(0))
+      : null;
 
-  const totalAttempts = userStats?.categoryStats.reduce(
-    (acc: number, curr: any) => acc + curr.attempts,
-    0
-  );
+  const totalAttempts =
+    userStats?.categoryStats?.reduce(
+      (acc: number, curr: any) => acc + curr.attempts,
+      0
+    ) || 0;
 
-  const totalCompleted = userStats?.categoryStats.reduce(
-    (acc: number, curr: any) => acc + curr.completed,
-    0
-  );
+  const totalCompleted =
+    userStats?.categoryStats?.reduce(
+      (acc: number, curr: any) => acc + curr.completed,
+      0
+    ) || 0;
   // show the 2 most recent attempts
-  const latestStats = userStats?.categoryStats
-    .slice(-2)
-    .sort((a: any, b: any) => {
-      return (
-        new Date(b.lastAttempt).getTime() - new Date(a.lastAttempt).getTime()
-      );
-    });
+  const latestStats =
+    userStats?.categoryStats && userStats.categoryStats.length > 0
+      ? userStats.categoryStats.slice(-2).sort((a: any, b: any) => {
+          return (
+            new Date(b.lastAttempt).getTime() -
+            new Date(a.lastAttempt).getTime()
+          );
+        })
+      : [];
 
   console.log("User stats:", userStats.categoryStats);
 
@@ -74,10 +78,14 @@ function UserStats({ userStats }: any) {
 
       <div className="grid grid-cols-3 gap-6 font-semibold">
         <div className="py-4 px-4 flex flex-col gap-1 border-2 rounded-lg shadow-[0_.3rem_0_0_rgba(0,0,0,0.1)]">
-          <h2 className="font-bold text-xl">{account?.slice(0, 6)}...{account?.slice(-4)}</h2>
+          <h2 className="font-bold text-xl">
+            {account?.slice(0, 6)}...{account?.slice(-4)}
+          </h2>
           <p className="text-gray-400 font-semibold">Recent Attempt</p>
           <p className="text-sm text-gray-400 font-semibold">
-            {formatTime(recentAttemptDate)}
+            {recentAttemptDate
+              ? formatTime(recentAttemptDate)
+              : "Not attempted"}
           </p>
         </div>
 

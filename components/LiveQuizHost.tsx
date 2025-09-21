@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useWebSocket } from "@/hooks/useWebSocketAPI";
 import { useWeb3 } from "@/context/Web3Context";
 import {
@@ -51,6 +51,9 @@ export default function LiveQuizHost({
     null
   );
   const [participants, setParticipants] = useState<ILiveParticipant[]>([]);
+
+  // Store session code in ref for reliable access in event handlers
+  const sessionCodeRef = useRef<string | null>(null);
 
   // Polling to check for new participants
   useEffect(() => {
@@ -139,6 +142,7 @@ export default function LiveQuizHost({
     onQuizCreated((data: { session: ILiveQuizSession }) => {
       setSession(data.session);
       setParticipants(data.session.participants);
+      sessionCodeRef.current = data.session.code; // Store session code in ref
       toast.success(`Quiz created! Code: ${data.session.code}`);
     });
 
@@ -165,8 +169,17 @@ export default function LiveQuizHost({
     );
 
     onQuizEnded((data: { results: any }) => {
-      toast.success("Quiz ended! Results saved.");
-      // Handle quiz end
+      toast.success("Quiz ended! Redirecting to results...");
+      // Redirect to leaderboard page for host
+      setTimeout(() => {
+        const sessionCode = sessionCodeRef.current || session?.code;
+        if (sessionCode) {
+          window.location.href = `/leaderboard?sessionCode=${sessionCode}&host=true`;
+        } else {
+          toast.error("Session code not available. Please try again.");
+          console.error("No session code available for leaderboard redirect");
+        }
+      }, 1500);
     });
 
     onParticipantJoined(

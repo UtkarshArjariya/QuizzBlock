@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { fileSessionStore } from '@/lib/fileSessionStore';
+import { mongoSessionStore } from '@/lib/mongoSessionStore';
 
 export async function POST(req: NextRequest) {
     try {
@@ -20,7 +20,7 @@ export async function POST(req: NextRequest) {
         console.log('Answer submission:', { sessionId, participantId, questionId, optionId });
 
         // Get all sessions and find the one by sessionId
-        const allSessions = fileSessionStore.getAllSessions();
+        const allSessions = await mongoSessionStore.getAllSessions();
         const session = Object.values(allSessions).find(s => s.id === sessionId);
 
         if (!session) {
@@ -90,8 +90,8 @@ export async function POST(req: NextRequest) {
             participant.score += 100; // Base points for correct answer
         }
 
-        // Update session in storage
-        fileSessionStore.updateSession(session.code, { participants: session.participants });
+        // Update session in MongoDB
+        await mongoSessionStore.updateSession(session.code, { participants: session.participants });
 
         console.log('Answer recorded:', {
             participantId,

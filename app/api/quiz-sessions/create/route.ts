@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { fileSessionStore } from '@/lib/fileSessionStore';
+import { mongoSessionStore } from '@/lib/mongoSessionStore';
 import { IQuiz, ILiveQuizSession } from '@/types/types';
 
 export async function POST(req: NextRequest) {
@@ -31,11 +31,11 @@ export async function POST(req: NextRequest) {
             questionTimeLimit: 30
         };
 
-        // Store session
-        fileSessionStore.createSession(session);
+        // Store session in MongoDB
+        await mongoSessionStore.createSession(session);
 
         // Debug: Check if session was stored
-        const storedSession = fileSessionStore.getSessionByCode(session.code);
+        const storedSession = await mongoSessionStore.getSessionByCode(session.code);
         console.log('Session created:', {
             code: session.code,
             stored: !!storedSession,

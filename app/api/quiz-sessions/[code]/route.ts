@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { fileSessionStore } from '@/lib/fileSessionStore';
+import { mongoSessionStore } from '@/lib/mongoSessionStore';
 
 export async function GET(
     req: NextRequest,
@@ -15,13 +15,14 @@ export async function GET(
             );
         }
 
-        const session = fileSessionStore.getSessionByCode(code.toUpperCase());
+        const session = await mongoSessionStore.getSessionByCode(code.toUpperCase());
 
         // Debug: Log lookup attempt
+        const allSessions = await mongoSessionStore.getAllSessions();
         console.log('Session lookup:', {
             code: code.toUpperCase(),
             found: !!session,
-            allSessions: Object.keys(fileSessionStore.getAllSessions())
+            allSessions: Object.keys(allSessions)
         });
 
         if (!session) {

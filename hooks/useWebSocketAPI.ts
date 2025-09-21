@@ -325,8 +325,9 @@ export function useWebSocket(): IWebSocketAPI {
                 };
 
                 setTimeout(() => {
+                    // Keep the callback for components to handle the redirect
                     eventCallbacks.onQuizEnded?.({ results: mockResults });
-                    console.log('Quiz ended! Results generated.');
+                    console.log('Quiz ended! Components will handle redirect.');
                 }, 500);
             } else {
                 throw new Error('Failed to update session');

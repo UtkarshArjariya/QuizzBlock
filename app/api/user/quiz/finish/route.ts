@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { mongoUserStore } from "@/lib/mongoUserStore";
 
 export async function POST(req: NextRequest) {
   try {
@@ -18,19 +19,25 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Invalid request" }, { status: 400 });
     }
 
-    // Return mock category stat (database setup is optional)
-    const mockStat = {
-      id: "mock-stat-id",
-      userId: "mock-user-id",
-      categoryId: categoryId,
-      attempts: 1,
-      completed: 1,
-      averageScore: score,
-      lastAttempt: new Date().toISOString()
-    };
+    // Record the quiz completion in MongoDB
+    await mongoUserStore.recordQuizCompletion(walletAddress, {
+      categoryId,
+      quizId,
+      score,
+      responses,
+      completedAt: new Date()
+    });
 
-    console.log("Quiz finished (mock):", { walletAddress, categoryId, score });
-    return NextResponse.json(mockStat);
+    console.log("Quiz finished and recorded:", { walletAddress, categoryId, score });
+
+    // Return the recorded data
+    return NextResponse.json({
+      success: true,
+      walletAddress,
+      categoryId,
+      score,
+      completedAt: new Date().toISOString()
+    });
   } catch (error) {
     console.log("Error finishing quiz: ", error);
     return NextResponse.json(

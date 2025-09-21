@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useWebSocket } from "@/hooks/useWebSocketAPI";
 import { useWeb3 } from "@/context/Web3Context";
 import {
@@ -49,12 +49,16 @@ export default function LiveQuizParticipant({
   const [participants, setParticipants] = useState<ILiveParticipant[]>([]);
   const [questionStartTime, setQuestionStartTime] = useState<number>(0);
 
+  // Store session code in ref for reliable access in event handlers
+  const sessionCodeRef = useRef<string | null>(null);
+
   useEffect(() => {
     onParticipantJoined(
       (data: { participant: ILiveParticipant; session?: ILiveQuizSession }) => {
         if (data.session && data.participant.walletAddress === account) {
           setSession(data.session);
           setParticipant(data.participant);
+          sessionCodeRef.current = data.session.code; // Store session code in ref
           toast.success(`Joined quiz: ${data.session.quiz.title}`);
         }
       }
@@ -91,8 +95,17 @@ export default function LiveQuizParticipant({
     );
 
     onQuizEnded((data: { results: any }) => {
-      toast.success("Quiz ended! Check your results.");
-      // Show results
+      toast.success("Quiz ended! Redirecting to results...");
+      // Redirect to leaderboard page for participants
+      setTimeout(() => {
+        const sessionCode = sessionCodeRef.current || session?.code;
+        if (sessionCode) {
+          window.location.href = `/leaderboard?sessionCode=${sessionCode}&host=false`;
+        } else {
+          toast.error("Session code not available. Please try again.");
+          console.error("No session code available for leaderboard redirect");
+        }
+      }, 1500);
     });
 
     onError((data: { message: string; code?: string }) => {
