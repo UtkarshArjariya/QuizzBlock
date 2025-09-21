@@ -6,7 +6,7 @@ import ContextProvider from "@/providers/ContextProvider";
 import { Toaster } from "react-hot-toast";
 
 export const metadata: Metadata = {
-  title: "Kwizi - Web3 Quiz Platform",
+  title: "quickblock web3 quiz platform",
   description: "A decentralized quiz platform powered by Avalanche blockchain",
 };
 
